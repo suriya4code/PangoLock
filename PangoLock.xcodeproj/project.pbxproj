@@ -60,6 +60,7 @@
 		AE2000000000000000000001 /* SecurityScopedAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2000000000000000000002 /* SecurityScopedAccess.swift */; };
 		CE2000000000000000000003 /* SecurityScopedAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2000000000000000000002 /* SecurityScopedAccess.swift */; };
 		AE3000000000000000000001 /* FailSafeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3000000000000000000002 /* FailSafeTests.swift */; };
+		AF5000000000000000000001 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF5000000000000000000002 /* Assets.xcassets */; };
 		8C24006595DC47199F1A30B6 /* CameraCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4891FD8A174B7597AD137F /* CameraCapture.swift */; };
 		25DD09C3790746F599006EBE /* EncryptedArchive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7EED3A481A43A3A0BB9B97 /* EncryptedArchive.swift */; };
 		0470A634320841FD9ED236C3 /* EncryptedArchive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7EED3A481A43A3A0BB9B97 /* EncryptedArchive.swift */; };
@@ -132,6 +133,7 @@
 		BE2000000000000000000002 /* SecurityScopedAccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityScopedAccess.swift; sourceTree = "<group>"; };
 		BE3000000000000000000002 /* FailSafeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FailSafeTests.swift; sourceTree = "<group>"; };
 		BE4000000000000000000003 /* PangoLock.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PangoLock.entitlements; sourceTree = "<group>"; };
+		BF5000000000000000000002 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Resources/Assets.xcassets; sourceTree = "<group>"; };
 		0A7EED3A481A43A3A0BB9B97 /* EncryptedArchive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncryptedArchive.swift; sourceTree = "<group>"; };
 		C330AA0E8E654D6E911716D5 /* SharingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharingService.swift; sourceTree = "<group>"; };
 		FCDF6CAD09044995AEF9F8CB /* PortableLockerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortableLockerService.swift; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 				662FE0672F5C436BB13D6BFB /* Models */,
 				CEBB63485F37443399FD23C1 /* Services */,
 				5A56F6B5936E4068AF6EA917 /* ViewModels */,
+				BF5000000000000000000002 /* Assets.xcassets */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -371,6 +374,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF5000000000000000000001 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -531,6 +535,7 @@
 		5DC587ECEAF240EBB94588E1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GENERATE_ASSET_SYMBOLS = NO;
 				CODE_SIGN_ENTITLEMENTS = PangoLock.entitlements;
 				CODE_SIGN_STYLE = Automatic;
@@ -555,6 +560,7 @@
 		B150D5F155404B2C91562A8E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GENERATE_ASSET_SYMBOLS = NO;
 				CODE_SIGN_ENTITLEMENTS = PangoLock.entitlements;
 				CODE_SIGN_STYLE = Automatic;
