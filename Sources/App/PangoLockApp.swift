@@ -30,6 +30,10 @@ struct PangoLockApp: App {
         MenuBarExtra("PangoLock", systemImage: "lock.shield") {
             Button("Show All Hidden") { model.showAll() }
             Button("Lock PangoLock") { model.lockApp() }
+            Button("Panic (Lock & Hide)") {
+                model.lockApp()
+                StealthMode.setHidden(true)
+            }
             Divider()
             Button("Quit PangoLock") { NSApplication.shared.terminate(nil) }
         }

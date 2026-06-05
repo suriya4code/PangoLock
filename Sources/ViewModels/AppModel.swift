@@ -20,12 +20,29 @@ final class AppModel: ObservableObject {
     private let registryURL: URL
     private let vaultStoreURL: URL
     private var vault: VaultManager?
+    private let shredder = ShredderService()
+    private let intruder: IntruderService?
 
     init(auth: AuthService, registryURL: URL, vaultStoreURL: URL) {
         self.auth = auth
         self.registryURL = registryURL
         self.vaultStoreURL = vaultStoreURL
+        let support = registryURL.deletingLastPathComponent()
+        self.intruder = AppModel.makeIntruderService(in: support)
         self.screen = auth.isConfigured ? .locked : .onboarding
+    }
+
+    /// Build the intruder log with a dedicated Keychain key (independent of the
+    /// master password, so failures can be logged while locked). Resilient: nil
+    /// if the Keychain is unavailable.
+    private static func makeIntruderService(in support: URL) -> IntruderService? {
+        guard let key = try? IntruderService.loadOrCreateKey(keychain: KeychainService()) else {
+            return nil
+        }
+        return try? IntruderService(
+            store: IntruderLogStore(url: support.appendingPathComponent("intruder.log")),
+            key: key,
+            imageDirectory: support.appendingPathComponent("Intruders"))
     }
 
     convenience init() {
@@ -55,9 +72,29 @@ final class AppModel: ObservableObject {
     }
 
     func unlock(_ password: String) {
-        run {
+        do {
             try auth.unlock(password: password)
+            intruder?.registerSuccess()
             try openVault()
+        } catch {
+            if case AuthError.incorrectPassword = error,
+               let intruder, intruder.registerFailure() {
+                if UserDefaults.standard.bool(forKey: "intruderDetection") {
+                    captureIntruder()
+                } else {
+                    try? intruder.recordIntruder()
+                }
+            }
+            errorMessage = Self.friendly(error)
+        }
+    }
+
+    private func captureIntruder() {
+        guard let intruder else { return }
+        Task { @MainActor in
+            let data = try? await CameraCapture().captureStill()
+            try? intruder.recordIntruder(imageData: data)
+            objectWillChange.send()
         }
     }
 
@@ -97,6 +134,31 @@ final class AppModel: ObservableObject {
     func lock(_ id: UUID) { run { try vault?.lock(id); reload() } }
     func unlockItem(_ id: UUID) { run { try vault?.unlock(id); reload() } }
     func remove(_ id: UUID) { run { try vault?.remove(id); reload() } }
+
+    /// Securely shred an item's data (the encrypted blob if locked, else the
+    /// original) and remove it from PangoLock.
+    func shred(_ id: UUID) {
+        run {
+            guard let item = vault?.items.first(where: { $0.id == id }) else {
+                throw VaultError.itemNotFound
+            }
+            let target: URL
+            if item.state == .encrypted, let managed = item.managedPath {
+                target = URL(fileURLWithPath: managed)
+            } else {
+                target = URL(fileURLWithPath: item.originalPath)
+            }
+            try shredder.shred(at: target)
+            try vault?.remove(id)
+            reload()
+        }
+    }
+
+    // MARK: - Intruder log
+
+    var intruderEvents: [IntruderEvent] { intruder?.events ?? [] }
+    func intruderImage(for event: IntruderEvent) -> Data? { try? intruder?.image(for: event) }
+    func clearIntruderLog() { run { try intruder?.clear() } }
 
     // MARK: - Helpers
 

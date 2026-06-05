@@ -5,10 +5,12 @@ struct SettingsView: View {
         TabView {
             GeneralSettings()
                 .tabItem { Label("General", systemImage: "gearshape") }
+            IntruderLogView()
+                .tabItem { Label("Security Log", systemImage: "person.badge.shield.checkmark") }
             AboutSettings()
                 .tabItem { Label("About", systemImage: "info.circle") }
         }
-        .frame(width: 460, height: 300)
+        .frame(width: 480, height: 340)
     }
 }
 
@@ -17,6 +19,9 @@ private struct GeneralSettings: View {
     @AppStorage("idleTimeout") private var idleTimeout = 300
     @AppStorage("theme") private var theme = "system"
     @AppStorage("biometricsEnabled") private var biometricsEnabled = false
+    @AppStorage("autoLockEnabled") private var autoLockEnabled = true
+    @AppStorage("stealthMode") private var stealthMode = false
+    @AppStorage("intruderDetection") private var intruderDetection = false
 
     var body: some View {
         Form {
@@ -40,6 +45,17 @@ private struct GeneralSettings: View {
                 }
             if !model.isBiometricAvailable {
                 Text("Touch ID isn't available on this Mac.")
+                    .font(.caption).foregroundStyle(.secondary)
+            }
+
+            Divider()
+
+            Toggle("Auto-lock on sleep / screen lock", isOn: $autoLockEnabled)
+            Toggle("Hide Dock icon (stealth)", isOn: $stealthMode)
+                .onChange(of: stealthMode) { StealthMode.setHidden($0) }
+            Toggle("Capture intruder photo after failed attempts", isOn: $intruderDetection)
+            if intruderDetection {
+                Text("Uses the camera after repeated failed unlocks. Requires camera permission.")
                     .font(.caption).foregroundStyle(.secondary)
             }
         }

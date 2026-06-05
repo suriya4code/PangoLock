@@ -4,6 +4,7 @@ import AppKit
 struct VaultListView: View {
     @EnvironmentObject private var model: AppModel
     @State private var selection: UUID?
+    @State private var shredCandidate: VaultItem?
 
     var body: some View {
         Group {
@@ -32,6 +33,15 @@ struct VaultListView: View {
             }
         }
         .navigationTitle("PangoLock")
+        .confirmationDialog("Permanently shred this item? This cannot be undone.",
+                            isPresented: Binding(get: { shredCandidate != nil },
+                                                 set: { if !$0 { shredCandidate = nil } }),
+                            titleVisibility: .visible) {
+            if let item = shredCandidate {
+                Button("Shred \(item.displayName)", role: .destructive) { model.shred(item.id) }
+            }
+            Button("Cancel", role: .cancel) { }
+        }
     }
 
     private var emptyState: some View {
@@ -68,6 +78,7 @@ struct VaultListView: View {
         }
         Divider()
         Button("Remove from PangoLock", role: .destructive) { model.remove(item.id) }
+        Button("Shred (Secure Delete)", role: .destructive) { shredCandidate = item }
     }
 
     private func chooseItems() {

@@ -44,6 +44,19 @@
 		61503C13493A46D5A8D47D14 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7715AD2C3D44939925F404D /* SettingsView.swift */; };
 		8F6BF123F84C4B128E124DE5 /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B5DE625E04C481694700328 /* AppModel.swift */; };
 		16C9377B46A143D4A4D26226 /* AppModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089317B28BBC4B6EB94FB61C /* AppModelTests.swift */; };
+		A59DCDBD419E4C3CAE79420A /* ShredderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAD4987A7D84527A0319FF4 /* ShredderService.swift */; };
+		3A607E96ECB247C0A7EACCC4 /* IntruderEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA591E3AA1DC4CF795D2A4BE /* IntruderEvent.swift */; };
+		881C02CF68E34FB0A1F99BCB /* IntruderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D5633B6A6E4EA89DCB5B80 /* IntruderService.swift */; };
+		CDCF5517C5E645BAAD8487C5 /* ShredderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAD4987A7D84527A0319FF4 /* ShredderService.swift */; };
+		23383BAC21184BE1838046F4 /* IntruderEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA591E3AA1DC4CF795D2A4BE /* IntruderEvent.swift */; };
+		0D2F1B72932C4174B3452D6A /* IntruderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D5633B6A6E4EA89DCB5B80 /* IntruderService.swift */; };
+		9CC8C96B8DDB4A179F9B438E /* ShredderServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5984571843A04EEC9F6AF4BB /* ShredderServiceTests.swift */; };
+		D6F2C00D8F3546F28FE0A6BD /* IntruderServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B8E58494804A2C8F353C1D /* IntruderServiceTests.swift */; };
+		C778A41CEBAE4C859A4FB353 /* CameraCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4891FD8A174B7597AD137F /* CameraCapture.swift */; };
+		C22C92ABD7FB4A919E936AA9 /* StealthMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C083BBBF984F54BC662706 /* StealthMode.swift */; };
+		2C9FE2062B2B4B3883E6D855 /* AutoLockController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6701F45486C4281B9646BE1 /* AutoLockController.swift */; };
+		17B71CAF2D9D49F589C05B53 /* IntruderLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E1C45DE9FD44DDB54F5985 /* IntruderLogView.swift */; };
+		8C24006595DC47199F1A30B6 /* CameraCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4891FD8A174B7597AD137F /* CameraCapture.swift */; };
 		E461D065DD444D918433CDBD /* CryptoServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67A5FDF0424401283F2B6EA /* CryptoServiceTests.swift */; };
 		CDD8BE5233404CA38BA4DE63 /* KeychainServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975FA9FC49D54CFC911CB57C /* KeychainServiceTests.swift */; };
 /* End PBXBuildFile section */
@@ -78,6 +91,15 @@
 		4D54226C45304E9D82ACB9FB /* VaultListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaultListView.swift; sourceTree = "<group>"; };
 		A7715AD2C3D44939925F404D /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		089317B28BBC4B6EB94FB61C /* AppModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModelTests.swift; sourceTree = "<group>"; };
+		EFAD4987A7D84527A0319FF4 /* ShredderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShredderService.swift; sourceTree = "<group>"; };
+		DA591E3AA1DC4CF795D2A4BE /* IntruderEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntruderEvent.swift; sourceTree = "<group>"; };
+		B0D5633B6A6E4EA89DCB5B80 /* IntruderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntruderService.swift; sourceTree = "<group>"; };
+		5984571843A04EEC9F6AF4BB /* ShredderServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShredderServiceTests.swift; sourceTree = "<group>"; };
+		F1B8E58494804A2C8F353C1D /* IntruderServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntruderServiceTests.swift; sourceTree = "<group>"; };
+		5B4891FD8A174B7597AD137F /* CameraCapture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraCapture.swift; sourceTree = "<group>"; };
+		72C083BBBF984F54BC662706 /* StealthMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StealthMode.swift; sourceTree = "<group>"; };
+		F6701F45486C4281B9646BE1 /* AutoLockController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoLockController.swift; sourceTree = "<group>"; };
+		55E1C45DE9FD44DDB54F5985 /* IntruderLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntruderLogView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				4AC890CC580A400084028DD1 /* VaultItem.swift */,
+				DA591E3AA1DC4CF795D2A4BE /* IntruderEvent.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -152,6 +175,7 @@
 				0B9F628365DE42508F6548E5 /* LockedView.swift */,
 				4D54226C45304E9D82ACB9FB /* VaultListView.swift */,
 				A7715AD2C3D44939925F404D /* SettingsView.swift */,
+				55E1C45DE9FD44DDB54F5985 /* IntruderLogView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -177,6 +201,11 @@
 				77F7DAB9A72B4B06ADCF5897 /* FileSystemService.swift */,
 				42A7EFD9985941F7BAE19D6A /* VaultManager.swift */,
 				533B7F04EB6F45D1B7EB0BA6 /* FolderArchiver.swift */,
+				EFAD4987A7D84527A0319FF4 /* ShredderService.swift */,
+				B0D5633B6A6E4EA89DCB5B80 /* IntruderService.swift */,
+				5B4891FD8A174B7597AD137F /* CameraCapture.swift */,
+				72C083BBBF984F54BC662706 /* StealthMode.swift */,
+				F6701F45486C4281B9646BE1 /* AutoLockController.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -193,6 +222,8 @@
 				F0FFD22135D74073A102394B /* FolderArchiverTests.swift */,
 				8517295945524B98B67ED0E6 /* VaultManagerLockTests.swift */,
 				089317B28BBC4B6EB94FB61C /* AppModelTests.swift */,
+				5984571843A04EEC9F6AF4BB /* ShredderServiceTests.swift */,
+				F1B8E58494804A2C8F353C1D /* IntruderServiceTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -311,6 +342,13 @@
 				9D564FD6F5CB42569177318D /* LockedView.swift in Sources */,
 				C77E8E039A8A4FE483DFA8F8 /* VaultListView.swift in Sources */,
 				61503C13493A46D5A8D47D14 /* SettingsView.swift in Sources */,
+				A59DCDBD419E4C3CAE79420A /* ShredderService.swift in Sources */,
+				3A607E96ECB247C0A7EACCC4 /* IntruderEvent.swift in Sources */,
+				881C02CF68E34FB0A1F99BCB /* IntruderService.swift in Sources */,
+				C778A41CEBAE4C859A4FB353 /* CameraCapture.swift in Sources */,
+				C22C92ABD7FB4A919E936AA9 /* StealthMode.swift in Sources */,
+				2C9FE2062B2B4B3883E6D855 /* AutoLockController.swift in Sources */,
+				17B71CAF2D9D49F589C05B53 /* IntruderLogView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,6 +377,12 @@
 				E8EA7E3402BF48468F1B6DC0 /* VaultManagerLockTests.swift in Sources */,
 				8F6BF123F84C4B128E124DE5 /* AppModel.swift in Sources */,
 				16C9377B46A143D4A4D26226 /* AppModelTests.swift in Sources */,
+				CDCF5517C5E645BAAD8487C5 /* ShredderService.swift in Sources */,
+				23383BAC21184BE1838046F4 /* IntruderEvent.swift in Sources */,
+				0D2F1B72932C4174B3452D6A /* IntruderService.swift in Sources */,
+				9CC8C96B8DDB4A179F9B438E /* ShredderServiceTests.swift in Sources */,
+				D6F2C00D8F3546F28FE0A6BD /* IntruderServiceTests.swift in Sources */,
+				8C24006595DC47199F1A30B6 /* CameraCapture.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -401,6 +445,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "PangoLock captures a photo after repeated failed unlock attempts to help identify intruders.";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -423,6 +468,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "PangoLock captures a photo after repeated failed unlock attempts to help identify intruders.";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
