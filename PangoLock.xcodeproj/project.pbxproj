@@ -1,0 +1,263 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		85379EC50F4947CCA2250477 /* PangoLockApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185D968928704A769CA5CC54 /* PangoLockApp.swift */; };
+		465B309A2B1A426F8639A2BA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA149CBFF2F4A03A7981338 /* ContentView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		55CD694A392A441C8C149356 /* PangoLock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PangoLock.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		185D968928704A769CA5CC54 /* PangoLockApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PangoLockApp.swift; sourceTree = "<group>"; };
+		BEA149CBFF2F4A03A7981338 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E1E48D00E3AC4F1D883CDA2B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5E68FD0079FF41CC8B797697 = {
+			isa = PBXGroup;
+			children = (
+				24986CDED42341D8BAC9EDD4 /* Sources */,
+				FC8153D2BDBB41AA846DAEE7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FC8153D2BDBB41AA846DAEE7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				55CD694A392A441C8C149356 /* PangoLock.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		24986CDED42341D8BAC9EDD4 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				DAD445337ECB466788A8FD43 /* App */,
+				7ABD95B1F6B241A38B4B5CB7 /* Views */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		DAD445337ECB466788A8FD43 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				185D968928704A769CA5CC54 /* PangoLockApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		7ABD95B1F6B241A38B4B5CB7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				BEA149CBFF2F4A03A7981338 /* ContentView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1AD2EC59F60A4A0EB6D0E88C /* PangoLock */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A9810DD5DB0C44A3ABAEE525 /* Build configuration list for PBXNativeTarget "PangoLock" */;
+			buildPhases = (
+				89527978C5644EAAB17BC220 /* Sources */,
+				E1E48D00E3AC4F1D883CDA2B /* Frameworks */,
+				C469E90152E14D9E80D63897 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PangoLock;
+			productName = PangoLock;
+			productReference = 55CD694A392A441C8C149356 /* PangoLock.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		50204AD9FD3A496F98FF8819 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1610;
+				LastUpgradeCheck = 1610;
+				TargetAttributes = {
+					1AD2EC59F60A4A0EB6D0E88C = {
+						CreatedOnToolsVersion = 16.1;
+					};
+				};
+			};
+			buildConfigurationList = 93E1B7359BF4494795F8CAB6 /* Build configuration list for PBXProject "PangoLock" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 5E68FD0079FF41CC8B797697;
+			productRefGroup = FC8153D2BDBB41AA846DAEE7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1AD2EC59F60A4A0EB6D0E88C /* PangoLock */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C469E90152E14D9E80D63897 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		89527978C5644EAAB17BC220 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				85379EC50F4947CCA2250477 /* PangoLockApp.swift in Sources */,
+				465B309A2B1A426F8639A2BA /* ContentView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		B6D9C08D84BC40889A47D720 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		08D61985A24041F8821829BA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		5DC587ECEAF240EBB94588E1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_ASSET_SYMBOLS = NO;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pangolock.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		B150D5F155404B2C91562A8E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_ASSET_SYMBOLS = NO;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pangolock.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		93E1B7359BF4494795F8CAB6 /* Build configuration list for PBXProject "PangoLock" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B6D9C08D84BC40889A47D720 /* Debug */,
+				08D61985A24041F8821829BA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A9810DD5DB0C44A3ABAEE525 /* Build configuration list for PBXNativeTarget "PangoLock" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5DC587ECEAF240EBB94588E1 /* Debug */,
+				B150D5F155404B2C91562A8E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 50204AD9FD3A496F98FF8819 /* Project object */;
+}
