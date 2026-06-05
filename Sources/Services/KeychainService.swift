@@ -22,6 +22,28 @@ struct KeychainService {
         ]
     }
 
+    /// Insert or replace a secret for `account`, gated behind biometric
+    /// (Touch ID) presence via a Secure Enclave access-control policy.
+    /// Retrieving it later with `get` triggers a Touch ID prompt.
+    func setBiometric(_ data: Data, for account: String) throws {
+        SecItemDelete(baseQuery(account: account) as CFDictionary)
+        var error: Unmanaged<CFError>?
+        guard let access = SecAccessControlCreateWithFlags(
+            nil,
+            kSecAttrAccessibleWhenUnlockedThisDeviceOnly,
+            .biometryCurrentSet,
+            &error) else {
+            throw KeychainError.unexpectedStatus(errSecParam)
+        }
+        var add = baseQuery(account: account)
+        add[kSecValueData as String] = data
+        add[kSecAttrAccessControl as String] = access
+        let status = SecItemAdd(add as CFDictionary, nil)
+        guard status == errSecSuccess else {
+            throw KeychainError.unexpectedStatus(status)
+        }
+    }
+
     /// Insert or replace the secret for `account`.
     func set(_ data: Data, for account: String) throws {
         SecItemDelete(baseQuery(account: account) as CFDictionary)

@@ -24,6 +24,7 @@ final class AuthService {
     private let saltAccount = "master.salt"
     private let verifierAccount = "master.verifier"
     private let iterationsAccount = "master.iterations"
+    private let biometricKeyAccount = "master.biokey"
     private static let magic = Data("PangoLock.master.v1".utf8)
 
     private(set) var state: AuthState
@@ -97,6 +98,32 @@ final class AuthService {
         }
     }
 
+    // MARK: - Biometric unlock
+
+    /// Store the current master key behind a biometric-gated Keychain item so it
+    /// can be released after a Touch ID prompt. Requires being unlocked.
+    /// Not unit-tested (needs biometric hardware + signing); manual.
+    func enableBiometricUnlock() throws {
+        guard let key = masterKey else { throw AuthError.notConfigured }
+        let raw = key.withUnsafeBytes { Data($0) }
+        try keychain.setBiometric(raw, for: biometricKeyAccount)
+    }
+
+    func disableBiometricUnlock() throws {
+        try keychain.delete(biometricKeyAccount)
+    }
+
+    /// Unlock using the biometric-protected master key (prompts Touch ID).
+    func unlockWithBiometrics() throws {
+        guard isConfigured else { throw AuthError.notConfigured }
+        guard let raw = try keychain.get(biometricKeyAccount) else {
+            throw AuthError.incorrectPassword
+        }
+        masterKey = SymmetricKey(data: raw)
+        state = .unlocked
+        failedAttempts = 0
+    }
+
     /// Lock the app: forget the in-memory master key.
     func lock() {
         masterKey = nil
@@ -108,6 +135,7 @@ final class AuthService {
         try keychain.delete(saltAccount)
         try keychain.delete(verifierAccount)
         try keychain.delete(iterationsAccount)
+        try keychain.delete(biometricKeyAccount)
         masterKey = nil
         failedAttempts = 0
         state = .unconfigured

@@ -1,21 +1,23 @@
 import SwiftUI
 
 struct ContentView: View {
-    var body: some View {
-        VStack(spacing: 12) {
-            Image(systemName: "lock.shield")
-                .font(.system(size: 48))
-                .foregroundStyle(.tint)
-            Text("PangoLock")
-                .font(.largeTitle.bold())
-            Text("Hide and lock your folders.")
-                .foregroundStyle(.secondary)
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .padding()
-    }
-}
+    @EnvironmentObject private var model: AppModel
 
-#Preview {
-    ContentView()
+    var body: some View {
+        Group {
+            switch model.screen {
+            case .onboarding: OnboardingView()
+            case .locked: LockedView()
+            case .unlocked: VaultListView()
+            }
+        }
+        .frame(minWidth: 660, minHeight: 440)
+        .alert("Something went wrong",
+               isPresented: Binding(get: { model.errorMessage != nil },
+                                    set: { if !$0 { model.errorMessage = nil } })) {
+            Button("OK", role: .cancel) { }
+        } message: {
+            Text(model.errorMessage ?? "")
+        }
+    }
 }
