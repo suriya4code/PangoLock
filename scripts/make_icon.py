@@ -12,7 +12,7 @@ import sys
 from PIL import Image, ImageDraw
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SRC = sys.argv[1] if len(sys.argv) > 1 else os.path.join(ROOT, "assets/logo.png")
+SRC = sys.argv[1] if len(sys.argv) > 1 else os.path.join(ROOT, "assets/app_icon.png")
 ICONSET = os.path.join(ROOT, "Sources/Resources/Assets.xcassets/AppIcon.appiconset")
 CREAM = (252, 245, 226, 255)
 

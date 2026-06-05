@@ -7,9 +7,10 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ## [Unreleased]
 
 ### Changed
-- App icon and README now use the official PangoLock brand logo (shield with a
-  curled pangolin + padlock). The icon is built from `assets/logo.png` via
-  `scripts/make_icon.py` (squared, inset, rounded‑rect macOS mask).
+- New PangoLock branding: the **app icon** uses the shield emblem
+  (`assets/app_icon.png`, built via `scripts/make_icon.py` — squared, inset,
+  rounded‑rect macOS mask), and the **README** leads with the full brand
+  lockup (`assets/logo.png`).
 
 ## [0.1.0] — 2026-06-05
 
