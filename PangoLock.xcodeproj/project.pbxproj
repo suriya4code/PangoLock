@@ -17,6 +17,10 @@
 		A9FDEFC774334A6987DCBBE1 /* CryptoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD7AF3E0ECBD4932AE9EC8E0 /* CryptoService.swift */; };
 		EF07F6A68A0E4214A209D596 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83A8487D6524DE48A8A7C4D /* KeychainService.swift */; };
 		C2A0DE141FC0413CAD0064A3 /* SecureWipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5AA79F3FC44781B124B7A9 /* SecureWipe.swift */; };
+		FAA50AD37A3E498B81910A04 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D8297906D3450F848A2727 /* AuthService.swift */; };
+		56A33ED823344678B78DB543 /* BiometricAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD475D114E6446CA4E36A63 /* BiometricAuth.swift */; };
+		F63F005F05C5432FA6EB9AEF /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D8297906D3450F848A2727 /* AuthService.swift */; };
+		6D0A416219D54642A4B568B0 /* AuthServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF639448B4B1423C87647BA4 /* AuthServiceTests.swift */; };
 		E461D065DD444D918433CDBD /* CryptoServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67A5FDF0424401283F2B6EA /* CryptoServiceTests.swift */; };
 		CDD8BE5233404CA38BA4DE63 /* KeychainServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975FA9FC49D54CFC911CB57C /* KeychainServiceTests.swift */; };
 /* End PBXBuildFile section */
@@ -32,6 +36,9 @@
 		AB5AA79F3FC44781B124B7A9 /* SecureWipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureWipe.swift; sourceTree = "<group>"; };
 		B67A5FDF0424401283F2B6EA /* CryptoServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoServiceTests.swift; sourceTree = "<group>"; };
 		975FA9FC49D54CFC911CB57C /* KeychainServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainServiceTests.swift; sourceTree = "<group>"; };
+		D4D8297906D3450F848A2727 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		4BD475D114E6446CA4E36A63 /* BiometricAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricAuth.swift; sourceTree = "<group>"; };
+		CF639448B4B1423C87647BA4 /* AuthServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthServiceTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +110,8 @@
 				BD7AF3E0ECBD4932AE9EC8E0 /* CryptoService.swift */,
 				A83A8487D6524DE48A8A7C4D /* KeychainService.swift */,
 				AB5AA79F3FC44781B124B7A9 /* SecureWipe.swift */,
+				D4D8297906D3450F848A2727 /* AuthService.swift */,
+				4BD475D114E6446CA4E36A63 /* BiometricAuth.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -112,6 +121,7 @@
 			children = (
 				B67A5FDF0424401283F2B6EA /* CryptoServiceTests.swift */,
 				975FA9FC49D54CFC911CB57C /* KeychainServiceTests.swift */,
+				CF639448B4B1423C87647BA4 /* AuthServiceTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -218,6 +228,8 @@
 				9EC4EC92E593454A949A328B /* CryptoService.swift in Sources */,
 				66C455A90C7E466CB2856B0C /* KeychainService.swift in Sources */,
 				C6A4E1501EAD48B3B0E8F9EB /* SecureWipe.swift in Sources */,
+				FAA50AD37A3E498B81910A04 /* AuthService.swift in Sources */,
+				56A33ED823344678B78DB543 /* BiometricAuth.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -231,6 +243,8 @@
 				A9FDEFC774334A6987DCBBE1 /* CryptoService.swift in Sources */,
 				EF07F6A68A0E4214A209D596 /* KeychainService.swift in Sources */,
 				C2A0DE141FC0413CAD0064A3 /* SecureWipe.swift in Sources */,
+				F63F005F05C5432FA6EB9AEF /* AuthService.swift in Sources */,
+				6D0A416219D54642A4B568B0 /* AuthServiceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
