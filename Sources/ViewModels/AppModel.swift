@@ -14,12 +14,19 @@ final class AppModel: ObservableObject {
 
     @Published private(set) var screen: Screen
     @Published private(set) var items: [VaultItem] = []
+    @Published private(set) var cards: [WalletCard] = []
     @Published var errorMessage: String?
+    @Published var infoMessage: String?
+    /// Shown once after enabling recovery (the phrase is never stored in clear).
+    @Published var recoveryPhrase: String?
 
     private let auth: AuthService
     private let registryURL: URL
     private let vaultStoreURL: URL
     private var vault: VaultManager?
+    private var wallet: WalletService?
+    private let recovery: RecoveryService
+    private let walletURL: URL
     private let shredder = ShredderService()
     private let intruder: IntruderService?
 
@@ -28,6 +35,8 @@ final class AppModel: ObservableObject {
         self.registryURL = registryURL
         self.vaultStoreURL = vaultStoreURL
         let support = registryURL.deletingLastPathComponent()
+        self.walletURL = support.appendingPathComponent("wallet.enc")
+        self.recovery = RecoveryService(url: support.appendingPathComponent("recovery.bundle"))
         self.intruder = AppModel.makeIntruderService(in: support)
         self.screen = auth.isConfigured ? .locked : .onboarding
     }
@@ -108,8 +117,30 @@ final class AppModel: ObservableObject {
     func lockApp() {
         auth.lock()
         vault = nil
+        wallet = nil
         items = []
+        cards = []
         screen = .locked
+    }
+
+    // MARK: - Recovery
+
+    var isRecoveryEnabled: Bool { recovery.isEnabled }
+
+    func enableRecovery() {
+        run {
+            guard let key = auth.masterKey else { throw AuthError.notConfigured }
+            recoveryPhrase = try recovery.enable(masterKey: key)
+        }
+    }
+
+    func recoverWithPhrase(_ phrase: String) {
+        do {
+            auth.unlockWithRecoveredKey(try recovery.recover(phrase: phrase))
+            try openVault()
+        } catch {
+            errorMessage = Self.friendly(error)
+        }
     }
 
     func enableBiometrics() { run { try auth.enableBiometricUnlock() } }
@@ -122,12 +153,24 @@ final class AppModel: ObservableObject {
                                        vaultStoreURL: vaultStoreURL)
         vault = manager
         items = manager.items
+        let walletService = try WalletService(store: WalletStore(url: walletURL), key: key)
+        wallet = walletService
+        cards = walletService.cards
         screen = .unlocked
     }
 
     // MARK: - Vault actions
 
-    func add(_ url: URL) { run { try vault?.add(path: url); reload() } }
+    func add(_ url: URL) {
+        run {
+            if let provider = CloudAwareness.provider(for: url) {
+                infoMessage = "Heads up: this item is inside \(provider.rawValue). "
+                    + "Its plaintext may already be synced to the cloud."
+            }
+            try vault?.add(path: url)
+            reload()
+        }
+    }
     func hide(_ id: UUID) { run { try vault?.hide(id); reload() } }
     func show(_ id: UUID) { run { try vault?.show(id); reload() } }
     func showAll() { run { try vault?.showAll(); reload() } }
@@ -159,6 +202,48 @@ final class AppModel: ObservableObject {
     var intruderEvents: [IntruderEvent] { intruder?.events ?? [] }
     func intruderImage(for event: IntruderEvent) -> Data? { try? intruder?.image(for: event) }
     func clearIntruderLog() { run { try intruder?.clear() } }
+
+    // MARK: - Wallet
+
+    func addCard(_ card: WalletCard) { run { try wallet?.add(card); cards = wallet?.cards ?? [] } }
+    func removeCard(_ id: UUID) { run { try wallet?.remove(id); cards = wallet?.cards ?? [] } }
+    func generatePassword() -> String { PasswordGenerator.generate() }
+
+    // MARK: - Backup / share / portable locker
+
+    func backup(to destination: URL, password: String) {
+        run {
+            try BackupService().backup(AppModel.appSupportDirectory(), to: destination, password: password)
+            infoMessage = "Encrypted backup created."
+        }
+    }
+
+    /// Export a (visible/hidden) item as an encrypted, shareable file.
+    func shareItem(_ id: UUID, to destination: URL, password: String, hint: String?) {
+        run {
+            guard let item = vault?.items.first(where: { $0.id == id }) else {
+                throw VaultError.itemNotFound
+            }
+            guard item.state != .encrypted else { throw VaultError.invalidState }
+            try SharingService().export(URL(fileURLWithPath: item.originalPath),
+                                        to: destination, password: password, hint: hint)
+            infoMessage = "Encrypted copy exported."
+        }
+    }
+
+    /// Save a (visible/hidden) item to a portable encrypted USB locker.
+    func createLocker(_ id: UUID, to destination: URL, password: String) {
+        run {
+            guard let item = vault?.items.first(where: { $0.id == id }) else {
+                throw VaultError.itemNotFound
+            }
+            guard item.state != .encrypted else { throw VaultError.invalidState }
+            try PortableLockerService().create(at: destination,
+                                               from: URL(fileURLWithPath: item.originalPath),
+                                               password: password)
+            infoMessage = "Portable locker created."
+        }
+    }
 
     // MARK: - Helpers
 

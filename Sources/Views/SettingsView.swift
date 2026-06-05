@@ -1,16 +1,60 @@
 import SwiftUI
+import AppKit
 
 struct SettingsView: View {
     var body: some View {
         TabView {
             GeneralSettings()
                 .tabItem { Label("General", systemImage: "gearshape") }
+            BackupSettings()
+                .tabItem { Label("Backup", systemImage: "externaldrive") }
             IntruderLogView()
                 .tabItem { Label("Security Log", systemImage: "person.badge.shield.checkmark") }
             AboutSettings()
                 .tabItem { Label("About", systemImage: "info.circle") }
         }
-        .frame(width: 480, height: 340)
+        .frame(width: 480, height: 360)
+    }
+}
+
+private struct BackupSettings: View {
+    @EnvironmentObject private var model: AppModel
+    @State private var showBackupPassword = false
+
+    var body: some View {
+        Form {
+            Section("Recovery Key") {
+                if model.isRecoveryEnabled {
+                    Label("A recovery key is enabled.", systemImage: "checkmark.seal")
+                        .foregroundStyle(.green)
+                    Text("Use it on the lock screen if you forget your master password.")
+                        .font(.caption).foregroundStyle(.secondary)
+                } else {
+                    Text("Generate a one-time recovery key so you can regain access if you forget your master password.")
+                        .font(.caption).foregroundStyle(.secondary)
+                    Button("Create Recovery Key…") { model.enableRecovery() }
+                }
+            }
+
+            Divider()
+
+            Section("Encrypted Backup") {
+                Text("Save a password-protected backup of your registry, wallet, and recovery data.")
+                    .font(.caption).foregroundStyle(.secondary)
+                Button("Create Encrypted Backup…") { showBackupPassword = true }
+            }
+        }
+        .padding()
+        .sheet(isPresented: $showBackupPassword) {
+            PasswordSheet(title: "Encrypted Backup", confirmLabel: "Save…") { password, _ in
+                let panel = NSSavePanel()
+                panel.nameFieldStringValue = "PangoLock.\(BackupService.fileExtension)"
+                panel.canCreateDirectories = true
+                if panel.runModal() == .OK, let url = panel.url {
+                    model.backup(to: url, password: password)
+                }
+            }
+        }
     }
 }
 

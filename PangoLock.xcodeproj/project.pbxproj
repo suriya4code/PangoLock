@@ -56,7 +56,32 @@
 		C22C92ABD7FB4A919E936AA9 /* StealthMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C083BBBF984F54BC662706 /* StealthMode.swift */; };
 		2C9FE2062B2B4B3883E6D855 /* AutoLockController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6701F45486C4281B9646BE1 /* AutoLockController.swift */; };
 		17B71CAF2D9D49F589C05B53 /* IntruderLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E1C45DE9FD44DDB54F5985 /* IntruderLogView.swift */; };
+		AE10C0FFEE0042A1B0C0DE01 /* WalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE10C0FFEE0042A1B0C0DE02 /* WalletView.swift */; };
 		8C24006595DC47199F1A30B6 /* CameraCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4891FD8A174B7597AD137F /* CameraCapture.swift */; };
+		25DD09C3790746F599006EBE /* EncryptedArchive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7EED3A481A43A3A0BB9B97 /* EncryptedArchive.swift */; };
+		0470A634320841FD9ED236C3 /* EncryptedArchive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7EED3A481A43A3A0BB9B97 /* EncryptedArchive.swift */; };
+		A52EDBA7B1E34D9687D863BE /* SharingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C330AA0E8E654D6E911716D5 /* SharingService.swift */; };
+		9C47C926C156461FAD95C4D7 /* SharingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C330AA0E8E654D6E911716D5 /* SharingService.swift */; };
+		2E0F28FBE5CE439C898BA196 /* PortableLockerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCDF6CAD09044995AEF9F8CB /* PortableLockerService.swift */; };
+		0664F9FB6E8C4013A9A1F506 /* PortableLockerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCDF6CAD09044995AEF9F8CB /* PortableLockerService.swift */; };
+		20C7D9EBF2824B87B4DE9B14 /* BackupService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF5D06FE9294D8FBCD56F6C /* BackupService.swift */; };
+		A8988248A1FE404E8A12AF3C /* BackupService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF5D06FE9294D8FBCD56F6C /* BackupService.swift */; };
+		B6CD3A90F72E4848A61B4F01 /* RecoveryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DA96A2C66D4995AF19C423 /* RecoveryService.swift */; };
+		A5B5F81789694401940AE8E3 /* RecoveryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DA96A2C66D4995AF19C423 /* RecoveryService.swift */; };
+		1C6DEB04ED864CE49172B7B1 /* WalletService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82777EF2544B4ECEAAEC37A0 /* WalletService.swift */; };
+		61F310FE0A554A89ADD399BE /* WalletService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82777EF2544B4ECEAAEC37A0 /* WalletService.swift */; };
+		5804241895D446629995F30D /* PasswordGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F399E08201A45E881DC7CEF /* PasswordGenerator.swift */; };
+		46085C8E79954693A1607C3A /* PasswordGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F399E08201A45E881DC7CEF /* PasswordGenerator.swift */; };
+		48428578C7554D9CB3F8E789 /* CloudAwareness.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB409A73971348F0BA7B286A /* CloudAwareness.swift */; };
+		7E7E1FEA7B914893B1AD1364 /* CloudAwareness.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB409A73971348F0BA7B286A /* CloudAwareness.swift */; };
+		9DB2520E1D004585820C3DF9 /* TraceCleanerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B0777C07EC4AE783BFF3C5 /* TraceCleanerService.swift */; };
+		E230E6B764CB4FC293AF5024 /* TraceCleanerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B0777C07EC4AE783BFF3C5 /* TraceCleanerService.swift */; };
+		7EFA5286AE5743F89EF7FA36 /* WalletCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED49E1291A14C0DB104F103 /* WalletCard.swift */; };
+		59905BB48F65437F94490B46 /* WalletCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED49E1291A14C0DB104F103 /* WalletCard.swift */; };
+		1139E3609C3A42E0ABE2E6C4 /* EncryptedArchiveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97DBF272BC6481D85A79531 /* EncryptedArchiveTests.swift */; };
+		1C5D3A0F97D14F9C8C67662F /* RecoveryServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C882E29D7140FFB2BA806B /* RecoveryServiceTests.swift */; };
+		A81AFB8BC9DF46F9A4714F6A /* WalletServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3597AC6B2EC148E6812E62E4 /* WalletServiceTests.swift */; };
+		ADF46A6D998840E29E9C36BD /* CloudAndTraceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960BD66409EE4932A3DDA5CA /* CloudAndTraceTests.swift */; };
 		E461D065DD444D918433CDBD /* CryptoServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67A5FDF0424401283F2B6EA /* CryptoServiceTests.swift */; };
 		CDD8BE5233404CA38BA4DE63 /* KeychainServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975FA9FC49D54CFC911CB57C /* KeychainServiceTests.swift */; };
 /* End PBXBuildFile section */
@@ -100,6 +125,21 @@
 		72C083BBBF984F54BC662706 /* StealthMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StealthMode.swift; sourceTree = "<group>"; };
 		F6701F45486C4281B9646BE1 /* AutoLockController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoLockController.swift; sourceTree = "<group>"; };
 		55E1C45DE9FD44DDB54F5985 /* IntruderLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntruderLogView.swift; sourceTree = "<group>"; };
+		BE10C0FFEE0042A1B0C0DE02 /* WalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletView.swift; sourceTree = "<group>"; };
+		0A7EED3A481A43A3A0BB9B97 /* EncryptedArchive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncryptedArchive.swift; sourceTree = "<group>"; };
+		C330AA0E8E654D6E911716D5 /* SharingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharingService.swift; sourceTree = "<group>"; };
+		FCDF6CAD09044995AEF9F8CB /* PortableLockerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortableLockerService.swift; sourceTree = "<group>"; };
+		DAF5D06FE9294D8FBCD56F6C /* BackupService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupService.swift; sourceTree = "<group>"; };
+		91DA96A2C66D4995AF19C423 /* RecoveryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoveryService.swift; sourceTree = "<group>"; };
+		82777EF2544B4ECEAAEC37A0 /* WalletService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletService.swift; sourceTree = "<group>"; };
+		4F399E08201A45E881DC7CEF /* PasswordGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordGenerator.swift; sourceTree = "<group>"; };
+		EB409A73971348F0BA7B286A /* CloudAwareness.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudAwareness.swift; sourceTree = "<group>"; };
+		F9B0777C07EC4AE783BFF3C5 /* TraceCleanerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraceCleanerService.swift; sourceTree = "<group>"; };
+		EED49E1291A14C0DB104F103 /* WalletCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletCard.swift; sourceTree = "<group>"; };
+		D97DBF272BC6481D85A79531 /* EncryptedArchiveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncryptedArchiveTests.swift; sourceTree = "<group>"; };
+		B9C882E29D7140FFB2BA806B /* RecoveryServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoveryServiceTests.swift; sourceTree = "<group>"; };
+		3597AC6B2EC148E6812E62E4 /* WalletServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletServiceTests.swift; sourceTree = "<group>"; };
+		960BD66409EE4932A3DDA5CA /* CloudAndTraceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudAndTraceTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +195,7 @@
 			children = (
 				4AC890CC580A400084028DD1 /* VaultItem.swift */,
 				DA591E3AA1DC4CF795D2A4BE /* IntruderEvent.swift */,
+				EED49E1291A14C0DB104F103 /* WalletCard.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -176,6 +217,7 @@
 				4D54226C45304E9D82ACB9FB /* VaultListView.swift */,
 				A7715AD2C3D44939925F404D /* SettingsView.swift */,
 				55E1C45DE9FD44DDB54F5985 /* IntruderLogView.swift */,
+				BE10C0FFEE0042A1B0C0DE02 /* WalletView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -206,6 +248,15 @@
 				5B4891FD8A174B7597AD137F /* CameraCapture.swift */,
 				72C083BBBF984F54BC662706 /* StealthMode.swift */,
 				F6701F45486C4281B9646BE1 /* AutoLockController.swift */,
+				0A7EED3A481A43A3A0BB9B97 /* EncryptedArchive.swift */,
+				C330AA0E8E654D6E911716D5 /* SharingService.swift */,
+				FCDF6CAD09044995AEF9F8CB /* PortableLockerService.swift */,
+				DAF5D06FE9294D8FBCD56F6C /* BackupService.swift */,
+				91DA96A2C66D4995AF19C423 /* RecoveryService.swift */,
+				82777EF2544B4ECEAAEC37A0 /* WalletService.swift */,
+				4F399E08201A45E881DC7CEF /* PasswordGenerator.swift */,
+				EB409A73971348F0BA7B286A /* CloudAwareness.swift */,
+				F9B0777C07EC4AE783BFF3C5 /* TraceCleanerService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -224,6 +275,10 @@
 				089317B28BBC4B6EB94FB61C /* AppModelTests.swift */,
 				5984571843A04EEC9F6AF4BB /* ShredderServiceTests.swift */,
 				F1B8E58494804A2C8F353C1D /* IntruderServiceTests.swift */,
+				D97DBF272BC6481D85A79531 /* EncryptedArchiveTests.swift */,
+				B9C882E29D7140FFB2BA806B /* RecoveryServiceTests.swift */,
+				3597AC6B2EC148E6812E62E4 /* WalletServiceTests.swift */,
+				960BD66409EE4932A3DDA5CA /* CloudAndTraceTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -349,6 +404,17 @@
 				C22C92ABD7FB4A919E936AA9 /* StealthMode.swift in Sources */,
 				2C9FE2062B2B4B3883E6D855 /* AutoLockController.swift in Sources */,
 				17B71CAF2D9D49F589C05B53 /* IntruderLogView.swift in Sources */,
+				AE10C0FFEE0042A1B0C0DE01 /* WalletView.swift in Sources */,
+				25DD09C3790746F599006EBE /* EncryptedArchive.swift in Sources */,
+				A52EDBA7B1E34D9687D863BE /* SharingService.swift in Sources */,
+				2E0F28FBE5CE439C898BA196 /* PortableLockerService.swift in Sources */,
+				20C7D9EBF2824B87B4DE9B14 /* BackupService.swift in Sources */,
+				B6CD3A90F72E4848A61B4F01 /* RecoveryService.swift in Sources */,
+				1C6DEB04ED864CE49172B7B1 /* WalletService.swift in Sources */,
+				5804241895D446629995F30D /* PasswordGenerator.swift in Sources */,
+				48428578C7554D9CB3F8E789 /* CloudAwareness.swift in Sources */,
+				9DB2520E1D004585820C3DF9 /* TraceCleanerService.swift in Sources */,
+				7EFA5286AE5743F89EF7FA36 /* WalletCard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -383,6 +449,20 @@
 				9CC8C96B8DDB4A179F9B438E /* ShredderServiceTests.swift in Sources */,
 				D6F2C00D8F3546F28FE0A6BD /* IntruderServiceTests.swift in Sources */,
 				8C24006595DC47199F1A30B6 /* CameraCapture.swift in Sources */,
+				0470A634320841FD9ED236C3 /* EncryptedArchive.swift in Sources */,
+				9C47C926C156461FAD95C4D7 /* SharingService.swift in Sources */,
+				0664F9FB6E8C4013A9A1F506 /* PortableLockerService.swift in Sources */,
+				A8988248A1FE404E8A12AF3C /* BackupService.swift in Sources */,
+				A5B5F81789694401940AE8E3 /* RecoveryService.swift in Sources */,
+				61F310FE0A554A89ADD399BE /* WalletService.swift in Sources */,
+				46085C8E79954693A1607C3A /* PasswordGenerator.swift in Sources */,
+				7E7E1FEA7B914893B1AD1364 /* CloudAwareness.swift in Sources */,
+				E230E6B764CB4FC293AF5024 /* TraceCleanerService.swift in Sources */,
+				59905BB48F65437F94490B46 /* WalletCard.swift in Sources */,
+				1139E3609C3A42E0ABE2E6C4 /* EncryptedArchiveTests.swift in Sources */,
+				1C5D3A0F97D14F9C8C67662F /* RecoveryServiceTests.swift in Sources */,
+				A81AFB8BC9DF46F9A4714F6A /* WalletServiceTests.swift in Sources */,
+				ADF46A6D998840E29E9C36BD /* CloudAndTraceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

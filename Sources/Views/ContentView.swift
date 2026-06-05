@@ -1,4 +1,5 @@
 import SwiftUI
+import AppKit
 
 struct ContentView: View {
     @EnvironmentObject private var model: AppModel
@@ -26,6 +27,24 @@ struct ContentView: View {
             Button("OK", role: .cancel) { }
         } message: {
             Text(model.errorMessage ?? "")
+        }
+        .alert("Notice",
+               isPresented: Binding(get: { model.infoMessage != nil },
+                                    set: { if !$0 { model.infoMessage = nil } })) {
+            Button("OK", role: .cancel) { }
+        } message: {
+            Text(model.infoMessage ?? "")
+        }
+        .alert("Save Your Recovery Key",
+               isPresented: Binding(get: { model.recoveryPhrase != nil },
+                                    set: { if !$0 { model.recoveryPhrase = nil } })) {
+            Button("Copy") {
+                NSPasteboard.general.clearContents()
+                NSPasteboard.general.setString(model.recoveryPhrase ?? "", forType: .string)
+            }
+            Button("Done", role: .cancel) { }
+        } message: {
+            Text("Write this down and keep it somewhere safe. It's shown only once and is the only way to recover access if you forget your password.\n\n\(model.recoveryPhrase ?? "")")
         }
     }
 }

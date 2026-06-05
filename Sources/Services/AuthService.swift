@@ -124,6 +124,13 @@ final class AuthService {
         failedAttempts = 0
     }
 
+    /// Unlock with a master key recovered out-of-band (e.g. via RecoveryService).
+    func unlockWithRecoveredKey(_ key: SymmetricKey) {
+        masterKey = key
+        state = .unlocked
+        failedAttempts = 0
+    }
+
     /// Lock the app: forget the in-memory master key.
     func lock() {
         masterKey = nil

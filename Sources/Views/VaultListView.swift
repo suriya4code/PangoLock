@@ -5,6 +5,9 @@ struct VaultListView: View {
     @EnvironmentObject private var model: AppModel
     @State private var selection: UUID?
     @State private var shredCandidate: VaultItem?
+    @State private var shareCandidate: VaultItem?
+    @State private var lockerCandidate: VaultItem?
+    @State private var showWallet = false
 
     var body: some View {
         Group {
@@ -28,6 +31,7 @@ struct VaultListView: View {
             ToolbarItemGroup {
                 Button { chooseItems() } label: { Label("Add", systemImage: "plus") }
                 Button { model.showAll() } label: { Label("Show All", systemImage: "eye") }
+                Button { showWallet = true } label: { Label("Wallet", systemImage: "creditcard") }
                 Spacer()
                 Button { model.lockApp() } label: { Label("Lock", systemImage: "lock") }
             }
@@ -42,6 +46,38 @@ struct VaultListView: View {
             }
             Button("Cancel", role: .cancel) { }
         }
+        .sheet(isPresented: $showWallet) {
+            NavigationStack { WalletView() }
+                .frame(minWidth: 520, minHeight: 420)
+                .toolbar { ToolbarItem(placement: .cancellationAction) {
+                    Button("Done") { showWallet = false }
+                } }
+        }
+        .sheet(item: $shareCandidate) { item in
+            PasswordSheet(title: "Share \(item.displayName)",
+                          confirmLabel: "Export…", needsHint: true) { password, hint in
+                if let dest = savePanel(suggested: item.displayName,
+                                        ext: SharingService.fileExtension) {
+                    model.shareItem(item.id, to: dest, password: password, hint: hint)
+                }
+            }
+        }
+        .sheet(item: $lockerCandidate) { item in
+            PasswordSheet(title: "USB Locker for \(item.displayName)",
+                          confirmLabel: "Create…") { password, _ in
+                if let dest = savePanel(suggested: item.displayName,
+                                        ext: PortableLockerService.fileExtension) {
+                    model.createLocker(item.id, to: dest, password: password)
+                }
+            }
+        }
+    }
+
+    private func savePanel(suggested: String, ext: String) -> URL? {
+        let panel = NSSavePanel()
+        panel.nameFieldStringValue = "\(suggested).\(ext)"
+        panel.canCreateDirectories = true
+        return panel.runModal() == .OK ? panel.url : nil
     }
 
     private var emptyState: some View {
@@ -75,6 +111,9 @@ struct VaultListView: View {
         }
         if item.state != .encrypted {
             Button("Reveal in Finder") { reveal(item) }
+            Divider()
+            Button("Share Encrypted Copy\u{2026}") { shareCandidate = item }
+            Button("Save to USB Locker\u{2026}") { lockerCandidate = item }
         }
         Divider()
         Button("Remove from PangoLock", role: .destructive) { model.remove(item.id) }
