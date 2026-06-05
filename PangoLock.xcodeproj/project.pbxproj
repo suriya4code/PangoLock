@@ -9,16 +9,40 @@
 /* Begin PBXBuildFile section */
 		85379EC50F4947CCA2250477 /* PangoLockApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185D968928704A769CA5CC54 /* PangoLockApp.swift */; };
 		465B309A2B1A426F8639A2BA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA149CBFF2F4A03A7981338 /* ContentView.swift */; };
+		0978D2F40BA84673B0F72FFF /* KeyDerivation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE758E0943244690A9F01448 /* KeyDerivation.swift */; };
+		9EC4EC92E593454A949A328B /* CryptoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD7AF3E0ECBD4932AE9EC8E0 /* CryptoService.swift */; };
+		66C455A90C7E466CB2856B0C /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83A8487D6524DE48A8A7C4D /* KeychainService.swift */; };
+		C6A4E1501EAD48B3B0E8F9EB /* SecureWipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5AA79F3FC44781B124B7A9 /* SecureWipe.swift */; };
+		4632236D6CE741A5B7D54517 /* KeyDerivation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE758E0943244690A9F01448 /* KeyDerivation.swift */; };
+		A9FDEFC774334A6987DCBBE1 /* CryptoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD7AF3E0ECBD4932AE9EC8E0 /* CryptoService.swift */; };
+		EF07F6A68A0E4214A209D596 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83A8487D6524DE48A8A7C4D /* KeychainService.swift */; };
+		C2A0DE141FC0413CAD0064A3 /* SecureWipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5AA79F3FC44781B124B7A9 /* SecureWipe.swift */; };
+		E461D065DD444D918433CDBD /* CryptoServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67A5FDF0424401283F2B6EA /* CryptoServiceTests.swift */; };
+		CDD8BE5233404CA38BA4DE63 /* KeychainServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975FA9FC49D54CFC911CB57C /* KeychainServiceTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		55CD694A392A441C8C149356 /* PangoLock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PangoLock.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0D57030679AD427ABE02E834 /* PangoLockTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PangoLockTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		185D968928704A769CA5CC54 /* PangoLockApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PangoLockApp.swift; sourceTree = "<group>"; };
 		BEA149CBFF2F4A03A7981338 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		DE758E0943244690A9F01448 /* KeyDerivation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyDerivation.swift; sourceTree = "<group>"; };
+		BD7AF3E0ECBD4932AE9EC8E0 /* CryptoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoService.swift; sourceTree = "<group>"; };
+		A83A8487D6524DE48A8A7C4D /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
+		AB5AA79F3FC44781B124B7A9 /* SecureWipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureWipe.swift; sourceTree = "<group>"; };
+		B67A5FDF0424401283F2B6EA /* CryptoServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoServiceTests.swift; sourceTree = "<group>"; };
+		975FA9FC49D54CFC911CB57C /* KeychainServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainServiceTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		E1E48D00E3AC4F1D883CDA2B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		418DBBB8187D47EFA31C82BA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -32,6 +56,7 @@
 			isa = PBXGroup;
 			children = (
 				24986CDED42341D8BAC9EDD4 /* Sources */,
+				62AA992A7E534D70A7C2162C /* Tests */,
 				FC8153D2BDBB41AA846DAEE7 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -40,6 +65,7 @@
 			isa = PBXGroup;
 			children = (
 				55CD694A392A441C8C149356 /* PangoLock.app */,
+				0D57030679AD427ABE02E834 /* PangoLockTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -49,6 +75,7 @@
 			children = (
 				DAD445337ECB466788A8FD43 /* App */,
 				7ABD95B1F6B241A38B4B5CB7 /* Views */,
+				CEBB63485F37443399FD23C1 /* Services */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -67,6 +94,26 @@
 				BEA149CBFF2F4A03A7981338 /* ContentView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		CEBB63485F37443399FD23C1 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				DE758E0943244690A9F01448 /* KeyDerivation.swift */,
+				BD7AF3E0ECBD4932AE9EC8E0 /* CryptoService.swift */,
+				A83A8487D6524DE48A8A7C4D /* KeychainService.swift */,
+				AB5AA79F3FC44781B124B7A9 /* SecureWipe.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		62AA992A7E534D70A7C2162C /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				B67A5FDF0424401283F2B6EA /* CryptoServiceTests.swift */,
+				975FA9FC49D54CFC911CB57C /* KeychainServiceTests.swift */,
+			);
+			path = Tests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -89,6 +136,23 @@
 			productReference = 55CD694A392A441C8C149356 /* PangoLock.app */;
 			productType = "com.apple.product-type.application";
 		};
+		751EED3522DE4571A9D6AB7F /* PangoLockTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ACAE1517CD1A4A68A1C6F22D /* Build configuration list for PBXNativeTarget "PangoLockTests" */;
+			buildPhases = (
+				ECB5594AC9B948DCBFB93BE4 /* Sources */,
+				418DBBB8187D47EFA31C82BA /* Frameworks */,
+				E62C3206CA7A451CAE61A316 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PangoLockTests;
+			productName = PangoLockTests;
+			productReference = 0D57030679AD427ABE02E834 /* PangoLockTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -100,6 +164,9 @@
 				LastUpgradeCheck = 1610;
 				TargetAttributes = {
 					1AD2EC59F60A4A0EB6D0E88C = {
+						CreatedOnToolsVersion = 16.1;
+					};
+					751EED3522DE4571A9D6AB7F = {
 						CreatedOnToolsVersion = 16.1;
 					};
 				};
@@ -118,12 +185,20 @@
 			projectRoot = "";
 			targets = (
 				1AD2EC59F60A4A0EB6D0E88C /* PangoLock */,
+				751EED3522DE4571A9D6AB7F /* PangoLockTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		C469E90152E14D9E80D63897 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E62C3206CA7A451CAE61A316 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -139,6 +214,23 @@
 			files = (
 				85379EC50F4947CCA2250477 /* PangoLockApp.swift in Sources */,
 				465B309A2B1A426F8639A2BA /* ContentView.swift in Sources */,
+				0978D2F40BA84673B0F72FFF /* KeyDerivation.swift in Sources */,
+				9EC4EC92E593454A949A328B /* CryptoService.swift in Sources */,
+				66C455A90C7E466CB2856B0C /* KeychainService.swift in Sources */,
+				C6A4E1501EAD48B3B0E8F9EB /* SecureWipe.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ECB5594AC9B948DCBFB93BE4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E461D065DD444D918433CDBD /* CryptoServiceTests.swift in Sources */,
+				CDD8BE5233404CA38BA4DE63 /* KeychainServiceTests.swift in Sources */,
+				4632236D6CE741A5B7D54517 /* KeyDerivation.swift in Sources */,
+				A9FDEFC774334A6987DCBBE1 /* CryptoService.swift in Sources */,
+				EF07F6A68A0E4214A209D596 /* KeychainService.swift in Sources */,
+				C2A0DE141FC0413CAD0064A3 /* SecureWipe.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -236,6 +328,50 @@
 			};
 			name = Release;
 		};
+		7CA815940DFE4CF2BA2AD6DE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_TESTING_SEARCH_PATHS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pangolock.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		2645C8A8BC1149C691A7E9EA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_TESTING_SEARCH_PATHS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pangolock.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -253,6 +389,15 @@
 			buildConfigurations = (
 				5DC587ECEAF240EBB94588E1 /* Debug */,
 				B150D5F155404B2C91562A8E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ACAE1517CD1A4A68A1C6F22D /* Build configuration list for PBXNativeTarget "PangoLockTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7CA815940DFE4CF2BA2AD6DE /* Debug */,
+				2645C8A8BC1149C691A7E9EA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
