@@ -6,7 +6,7 @@
 
 **Hide and password-lock any folder on your Mac — like a pangolin curling into an armored ball.**
 
-[![CI](https://github.com/OWNER/PangoLock/actions/workflows/ci.yml/badge.svg)](https://github.com/OWNER/PangoLock/actions/workflows/ci.yml)
+[![CI](https://github.com/suriya4code/PangoLock/actions/workflows/ci.yml/badge.svg)](https://github.com/suriya4code/PangoLock/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Platform: macOS 13+](https://img.shields.io/badge/macOS-13%2B-blue.svg)](#requirements)
 [![Swift 5.9](https://img.shields.io/badge/Swift-5.9-orange.svg)](#requirements)
@@ -53,7 +53,7 @@ are in **[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)**.
 ## Build & run
 
 ```bash
-git clone https://github.com/OWNER/PangoLock.git
+git clone https://github.com/suriya4code/PangoLock.git
 cd PangoLock
 xcodebuild build -project PangoLock.xcodeproj -scheme PangoLock \
   -configuration Debug -destination 'platform=macOS' \
@@ -79,7 +79,7 @@ Security issues should be reported privately — see [SECURITY.md](SECURITY.md).
 ## Support the project
 
 PangoLock is free forever. If it protects something you care about, please
-**⭐ star the repo** and consider **[sponsoring](https://github.com/sponsors/OWNER)**
+**⭐ star the repo** and consider **[sponsoring](https://github.com/sponsors/suriya4code)**
 to support ongoing development. Donations only — never a paywall.
 
 ## License

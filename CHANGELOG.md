@@ -47,5 +47,5 @@ vault features — is implemented and unit‑tested (86 tests).
 - No plaintext secrets on disk or in logs; the codebase makes no logging calls.
 - The item registry itself is encrypted; a wrong key cannot even enumerate it.
 
-[Unreleased]: https://github.com/OWNER/PangoLock/compare/v0.1.0...HEAD
-[0.1.0]: https://github.com/OWNER/PangoLock/releases/tag/v0.1.0
+[Unreleased]: https://github.com/suriya4code/PangoLock/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/suriya4code/PangoLock/releases/tag/v0.1.0
