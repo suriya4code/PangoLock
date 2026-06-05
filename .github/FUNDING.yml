@@ -1,0 +1,6 @@
+# Where the "Sponsor" button points. Replace OWNER with the real account/org.
+github: [OWNER]
+# Optional alternatives:
+# ko_fi: OWNER
+# open_collective: pangolock
+# custom: ["https://example.com/donate"]
