@@ -40,7 +40,10 @@ final class VaultManager {
     @discardableResult
     func add(path: URL) throws -> VaultItem {
         guard fs.exists(at: path) else { throw VaultError.sourceMissing }
-        let item = VaultItem(originalPath: path.path, displayName: path.lastPathComponent)
+        var item = VaultItem(originalPath: path.path, displayName: path.lastPathComponent)
+        // Capture an app-scoped bookmark so we can still reach this item after a
+        // relaunch under the App Sandbox.
+        item.bookmark = SecurityScopedAccess.makeBookmark(for: path)
         registry.items.append(item)
         try persist()
         return item
@@ -48,14 +51,20 @@ final class VaultManager {
 
     func hide(_ id: UUID) throws {
         try update(id) { item in
-            try fs.setHidden(true, at: URL(fileURLWithPath: item.originalPath))
+            try SecurityScopedAccess.withAccess(bookmark: item.bookmark,
+                                                fallback: URL(fileURLWithPath: item.originalPath)) {
+                try fs.setHidden(true, at: $0)
+            }
             item.state = .hidden
         }
     }
 
     func show(_ id: UUID) throws {
         try update(id) { item in
-            try fs.setHidden(false, at: URL(fileURLWithPath: item.originalPath))
+            try SecurityScopedAccess.withAccess(bookmark: item.bookmark,
+                                                fallback: URL(fileURLWithPath: item.originalPath)) {
+                try fs.setHidden(false, at: $0)
+            }
             item.state = .visible
         }
     }
@@ -63,7 +72,11 @@ final class VaultManager {
     /// Reveal every hidden item in one pass.
     func showAll() throws {
         for index in registry.items.indices where registry.items[index].state == .hidden {
-            try fs.setHidden(false, at: URL(fileURLWithPath: registry.items[index].originalPath))
+            let item = registry.items[index]
+            try SecurityScopedAccess.withAccess(bookmark: item.bookmark,
+                                                fallback: URL(fileURLWithPath: item.originalPath)) {
+                try fs.setHidden(false, at: $0)
+            }
             registry.items[index].state = .visible
             registry.items[index].updatedAt = Date()
         }
@@ -93,7 +106,10 @@ final class VaultManager {
         let originalURL = URL(fileURLWithPath: item.originalPath)
         guard fs.exists(at: originalURL) else { throw VaultError.sourceMissing }
 
-        let archive = try FolderArchiver.archive(at: originalURL)
+        let archive = try SecurityScopedAccess.withAccess(
+            bookmark: item.bookmark, fallback: originalURL) {
+            try FolderArchiver.archive(at: $0)
+        }
         let itemKey = derivedKey(for: item, folderPassword: folderPassword)
         let ciphertext = try CryptoService.encrypt(archive, using: itemKey)
 
@@ -116,8 +132,8 @@ final class VaultManager {
         try persist()
 
         // Original is now redundant; the encrypted blob is canonical.
-        if fs.exists(at: originalURL) {
-            try FileManager.default.removeItem(at: originalURL)
+        try SecurityScopedAccess.withAccess(bookmark: item.bookmark, fallback: originalURL) { url in
+            if fs.exists(at: url) { try FileManager.default.removeItem(at: url) }
         }
     }
 
@@ -140,11 +156,12 @@ final class VaultManager {
         // Throws CryptoError.authenticationFailed on wrong key/password.
         let archive = try CryptoService.decrypt(try Data(contentsOf: managedURL), using: itemKey)
 
-        let originalURL = URL(fileURLWithPath: item.originalPath)
-        if fs.exists(at: originalURL) {
-            try FileManager.default.removeItem(at: originalURL)
+        try SecurityScopedAccess.withAccess(
+            bookmark: item.bookmark,
+            fallback: URL(fileURLWithPath: item.originalPath)) { url in
+            if fs.exists(at: url) { try FileManager.default.removeItem(at: url) }
+            try FolderArchiver.unarchive(archive, to: url)
         }
-        try FolderArchiver.unarchive(archive, to: originalURL)
         try FileManager.default.removeItem(at: managedURL)
 
         item.managedPath = nil

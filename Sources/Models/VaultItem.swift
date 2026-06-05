@@ -14,6 +14,9 @@ struct VaultItem: Codable, Identifiable, Equatable {
     var originalPath: String
     /// Managed/protected location once locked or encrypted (nil while visible/hidden).
     var managedPath: String?
+    /// App-scoped security-scoped bookmark to the original item, so access
+    /// survives relaunch under the App Sandbox (nil in unsandboxed/legacy data).
+    var bookmark: Data?
     var displayName: String
     var state: State
     /// Per-item salt for per-folder key derivation.
@@ -32,6 +35,7 @@ struct VaultItem: Codable, Identifiable, Equatable {
         self.id = id
         self.originalPath = originalPath
         self.managedPath = nil
+        self.bookmark = nil
         self.displayName = displayName
         self.state = state
         self.salt = salt

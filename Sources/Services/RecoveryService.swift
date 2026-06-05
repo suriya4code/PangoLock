@@ -30,7 +30,8 @@ final class RecoveryService {
         let phrase = Self.generatePhrase()
         let salt = KeyDerivation.randomSalt()
         let recoveryKey = KeyDerivation.deriveKey(password: Self.normalize(phrase), salt: salt)
-        let rawMaster = masterKey.withUnsafeBytes { Data($0) }
+        var rawMaster = masterKey.withUnsafeBytes { Data($0) }
+        defer { rawMaster.secureWipe() }
         let wrapped = try CryptoService.encrypt(rawMaster, using: recoveryKey)
 
         let encoder = PropertyListEncoder()
@@ -50,7 +51,8 @@ final class RecoveryService {
     func recover(phrase: String) throws -> SymmetricKey {
         let bundle = try PropertyListDecoder().decode(Bundle.self, from: Data(contentsOf: url))
         let recoveryKey = KeyDerivation.deriveKey(password: Self.normalize(phrase), salt: bundle.salt)
-        let rawMaster = try CryptoService.decrypt(bundle.wrappedKey, using: recoveryKey)
+        var rawMaster = try CryptoService.decrypt(bundle.wrappedKey, using: recoveryKey)
+        defer { rawMaster.secureWipe() }
         return SymmetricKey(data: rawMaster)
     }
 

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!-- Run inside the macOS App Sandbox. -->
+	<key>com.apple.security.app-sandbox</key>
+	<true/>
+
+	<!-- Read/write access to files & folders the user explicitly selects
+	     (via the open panel or drag-and-drop). PangoLock never reaches outside
+	     what the user hands it. -->
+	<key>com.apple.security.files.user-selected.read-write</key>
+	<true/>
+
+	<!-- Persist access to user-selected items across launches via app-scoped
+	     security-scoped bookmarks (see SecurityScopedAccess). -->
+	<key>com.apple.security.files.bookmarks.app-scope</key>
+	<true/>
+
+	<!-- Camera, used only to capture an intruder photo after repeated failed
+	     unlock attempts (opt-in; gated by the "intruderDetection" setting). -->
+	<key>com.apple.security.device.camera</key>
+	<true/>
+</dict>
+</plist>

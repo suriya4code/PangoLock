@@ -57,6 +57,9 @@
 		2C9FE2062B2B4B3883E6D855 /* AutoLockController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6701F45486C4281B9646BE1 /* AutoLockController.swift */; };
 		17B71CAF2D9D49F589C05B53 /* IntruderLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E1C45DE9FD44DDB54F5985 /* IntruderLogView.swift */; };
 		AE10C0FFEE0042A1B0C0DE01 /* WalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE10C0FFEE0042A1B0C0DE02 /* WalletView.swift */; };
+		AE2000000000000000000001 /* SecurityScopedAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2000000000000000000002 /* SecurityScopedAccess.swift */; };
+		CE2000000000000000000003 /* SecurityScopedAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2000000000000000000002 /* SecurityScopedAccess.swift */; };
+		AE3000000000000000000001 /* FailSafeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3000000000000000000002 /* FailSafeTests.swift */; };
 		8C24006595DC47199F1A30B6 /* CameraCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4891FD8A174B7597AD137F /* CameraCapture.swift */; };
 		25DD09C3790746F599006EBE /* EncryptedArchive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7EED3A481A43A3A0BB9B97 /* EncryptedArchive.swift */; };
 		0470A634320841FD9ED236C3 /* EncryptedArchive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7EED3A481A43A3A0BB9B97 /* EncryptedArchive.swift */; };
@@ -126,6 +129,9 @@
 		F6701F45486C4281B9646BE1 /* AutoLockController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoLockController.swift; sourceTree = "<group>"; };
 		55E1C45DE9FD44DDB54F5985 /* IntruderLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntruderLogView.swift; sourceTree = "<group>"; };
 		BE10C0FFEE0042A1B0C0DE02 /* WalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletView.swift; sourceTree = "<group>"; };
+		BE2000000000000000000002 /* SecurityScopedAccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityScopedAccess.swift; sourceTree = "<group>"; };
+		BE3000000000000000000002 /* FailSafeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FailSafeTests.swift; sourceTree = "<group>"; };
+		BE4000000000000000000003 /* PangoLock.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PangoLock.entitlements; sourceTree = "<group>"; };
 		0A7EED3A481A43A3A0BB9B97 /* EncryptedArchive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncryptedArchive.swift; sourceTree = "<group>"; };
 		C330AA0E8E654D6E911716D5 /* SharingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharingService.swift; sourceTree = "<group>"; };
 		FCDF6CAD09044995AEF9F8CB /* PortableLockerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortableLockerService.swift; sourceTree = "<group>"; };
@@ -165,6 +171,7 @@
 			children = (
 				24986CDED42341D8BAC9EDD4 /* Sources */,
 				62AA992A7E534D70A7C2162C /* Tests */,
+				BE4000000000000000000003 /* PangoLock.entitlements */,
 				FC8153D2BDBB41AA846DAEE7 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -257,6 +264,7 @@
 				4F399E08201A45E881DC7CEF /* PasswordGenerator.swift */,
 				EB409A73971348F0BA7B286A /* CloudAwareness.swift */,
 				F9B0777C07EC4AE783BFF3C5 /* TraceCleanerService.swift */,
+				BE2000000000000000000002 /* SecurityScopedAccess.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -279,6 +287,7 @@
 				B9C882E29D7140FFB2BA806B /* RecoveryServiceTests.swift */,
 				3597AC6B2EC148E6812E62E4 /* WalletServiceTests.swift */,
 				960BD66409EE4932A3DDA5CA /* CloudAndTraceTests.swift */,
+				BE3000000000000000000002 /* FailSafeTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -380,6 +389,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				85379EC50F4947CCA2250477 /* PangoLockApp.swift in Sources */,
+				AE2000000000000000000001 /* SecurityScopedAccess.swift in Sources */,
 				465B309A2B1A426F8639A2BA /* ContentView.swift in Sources */,
 				0978D2F40BA84673B0F72FFF /* KeyDerivation.swift in Sources */,
 				9EC4EC92E593454A949A328B /* CryptoService.swift in Sources */,
@@ -463,6 +473,8 @@
 				1C5D3A0F97D14F9C8C67662F /* RecoveryServiceTests.swift in Sources */,
 				A81AFB8BC9DF46F9A4714F6A /* WalletServiceTests.swift in Sources */,
 				ADF46A6D998840E29E9C36BD /* CloudAndTraceTests.swift in Sources */,
+				CE2000000000000000000003 /* SecurityScopedAccess.swift in Sources */,
+				AE3000000000000000000001 /* FailSafeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -520,6 +532,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GENERATE_ASSET_SYMBOLS = NO;
+				CODE_SIGN_ENTITLEMENTS = PangoLock.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -543,6 +556,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GENERATE_ASSET_SYMBOLS = NO;
+				CODE_SIGN_ENTITLEMENTS = PangoLock.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;

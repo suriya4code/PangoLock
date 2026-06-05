@@ -105,7 +105,8 @@ final class AuthService {
     /// Not unit-tested (needs biometric hardware + signing); manual.
     func enableBiometricUnlock() throws {
         guard let key = masterKey else { throw AuthError.notConfigured }
-        let raw = key.withUnsafeBytes { Data($0) }
+        var raw = key.withUnsafeBytes { Data($0) }
+        defer { raw.secureWipe() }
         try keychain.setBiometric(raw, for: biometricKeyAccount)
     }
 
