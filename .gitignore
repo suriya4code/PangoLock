@@ -22,6 +22,9 @@ xcuserdata/
 PROMPT.md
 ACTION_PLAN.md
 
+# Full-res brand source (the committed assets/logo.png is used by the build)
+logo_final.png
+
 # Secrets / signing (never commit)
 *.p12
 *.mobileprovision

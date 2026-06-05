@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="Sources/Resources/Assets.xcassets/AppIcon.appiconset/icon_256.png" width="128" alt="PangoLock icon" />
+<img src="assets/logo.png" width="520" alt="PangoLock — Folder Lock & Encryption" />
 
 # PangoLock
 
