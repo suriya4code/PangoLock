@@ -18,6 +18,10 @@ xcuserdata/
 .build/
 .swiftpm/
 
+# Internal planning docs (kept local, not tracked)
+PROMPT.md
+ACTION_PLAN.md
+
 # Secrets / signing (never commit)
 *.p12
 *.mobileprovision
