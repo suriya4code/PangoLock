@@ -32,6 +32,10 @@
 		6EF07D5CF9ED47ACBB064C01 /* RegistryStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31C349C20474161BF870A53 /* RegistryStoreTests.swift */; };
 		16963977EA2B479FAF23FAFD /* FileSystemServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C81761BBB54E5F9C52E4A8 /* FileSystemServiceTests.swift */; };
 		9102EFC0A2224866AA951EDA /* VaultManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1784C2EA5EC47CA94667A2D /* VaultManagerTests.swift */; };
+		C4BD675F13BF43EB9BC077D5 /* FolderArchiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533B7F04EB6F45D1B7EB0BA6 /* FolderArchiver.swift */; };
+		2DD1BD019FBE447EBDBECBA1 /* FolderArchiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533B7F04EB6F45D1B7EB0BA6 /* FolderArchiver.swift */; };
+		5584779A7B744CC1B9C59BD3 /* FolderArchiverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0FFD22135D74073A102394B /* FolderArchiverTests.swift */; };
+		E8EA7E3402BF48468F1B6DC0 /* VaultManagerLockTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8517295945524B98B67ED0E6 /* VaultManagerLockTests.swift */; };
 		E461D065DD444D918433CDBD /* CryptoServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67A5FDF0424401283F2B6EA /* CryptoServiceTests.swift */; };
 		CDD8BE5233404CA38BA4DE63 /* KeychainServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975FA9FC49D54CFC911CB57C /* KeychainServiceTests.swift */; };
 /* End PBXBuildFile section */
@@ -57,6 +61,9 @@
 		D31C349C20474161BF870A53 /* RegistryStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistryStoreTests.swift; sourceTree = "<group>"; };
 		65C81761BBB54E5F9C52E4A8 /* FileSystemServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSystemServiceTests.swift; sourceTree = "<group>"; };
 		F1784C2EA5EC47CA94667A2D /* VaultManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaultManagerTests.swift; sourceTree = "<group>"; };
+		533B7F04EB6F45D1B7EB0BA6 /* FolderArchiver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderArchiver.swift; sourceTree = "<group>"; };
+		F0FFD22135D74073A102394B /* FolderArchiverTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderArchiverTests.swift; sourceTree = "<group>"; };
+		8517295945524B98B67ED0E6 /* VaultManagerLockTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaultManagerLockTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +149,7 @@
 				85F251357D1E4BBD9C6741ED /* RegistryStore.swift */,
 				77F7DAB9A72B4B06ADCF5897 /* FileSystemService.swift */,
 				42A7EFD9985941F7BAE19D6A /* VaultManager.swift */,
+				533B7F04EB6F45D1B7EB0BA6 /* FolderArchiver.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -155,6 +163,8 @@
 				D31C349C20474161BF870A53 /* RegistryStoreTests.swift */,
 				65C81761BBB54E5F9C52E4A8 /* FileSystemServiceTests.swift */,
 				F1784C2EA5EC47CA94667A2D /* VaultManagerTests.swift */,
+				F0FFD22135D74073A102394B /* FolderArchiverTests.swift */,
+				8517295945524B98B67ED0E6 /* VaultManagerLockTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -267,6 +277,7 @@
 				BF83E6D91DCB488897385EC6 /* RegistryStore.swift in Sources */,
 				336D12ADBEFA44F3A0B03541 /* FileSystemService.swift in Sources */,
 				FBDCBB59D90A44BEB02F8BE6 /* VaultManager.swift in Sources */,
+				C4BD675F13BF43EB9BC077D5 /* FolderArchiver.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,6 +300,9 @@
 				6EF07D5CF9ED47ACBB064C01 /* RegistryStoreTests.swift in Sources */,
 				16963977EA2B479FAF23FAFD /* FileSystemServiceTests.swift in Sources */,
 				9102EFC0A2224866AA951EDA /* VaultManagerTests.swift in Sources */,
+				2DD1BD019FBE447EBDBECBA1 /* FolderArchiver.swift in Sources */,
+				5584779A7B744CC1B9C59BD3 /* FolderArchiverTests.swift in Sources */,
+				E8EA7E3402BF48468F1B6DC0 /* VaultManagerLockTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -4,23 +4,33 @@ import CryptoKit
 enum VaultError: Error, Equatable {
     case itemNotFound
     case sourceMissing
+    case invalidState
+    case passwordRequired
+    case managedDataMissing
+    case verificationFailed
 }
 
-/// Orchestrates the protected-items registry. Phase 3 scope: add items and
-/// hide/show via the Finder hidden flag, persisting state to the encrypted
-/// registry. Lock/encrypt operations are added in Phase 4.
+/// Orchestrates the protected-items registry: hide/show via the Finder hidden
+/// flag, and lock/encrypt (AES-256) of folder contents at rest, all persisted
+/// to the encrypted registry.
 final class VaultManager {
     private let store: RegistryStore
     private let fs: FileSystemService
+    /// The master key (from AuthService in the app; a test key in tests).
     private let key: SymmetricKey
+    /// Directory holding encrypted `.plock` blobs for locked items.
+    private let vaultStore: URL
     private(set) var registry: VaultRegistry
 
     init(store: RegistryStore,
          fs: FileSystemService = FileSystemService(),
-         key: SymmetricKey) throws {
+         key: SymmetricKey,
+         vaultStoreURL: URL? = nil) throws {
         self.store = store
         self.fs = fs
         self.key = key
+        self.vaultStore = vaultStoreURL
+            ?? store.url.deletingLastPathComponent().appendingPathComponent("VaultStore")
         self.registry = try store.load(using: key)
     }
 
@@ -66,6 +76,117 @@ final class VaultManager {
         }
         registry.items.removeAll { $0.id == id }
         try persist()
+    }
+
+    // MARK: - Lock / encrypt
+
+    /// Encrypt an item's contents at rest and remove the plaintext original.
+    /// Pass `folderPassword` to protect this item with its own password too.
+    func lock(_ id: UUID, folderPassword: String? = nil) throws {
+        guard let index = registry.items.firstIndex(where: { $0.id == id }) else {
+            throw VaultError.itemNotFound
+        }
+        var item = registry.items[index]
+        guard item.state == .visible || item.state == .hidden else {
+            throw VaultError.invalidState
+        }
+        let originalURL = URL(fileURLWithPath: item.originalPath)
+        guard fs.exists(at: originalURL) else { throw VaultError.sourceMissing }
+
+        let archive = try FolderArchiver.archive(at: originalURL)
+        let itemKey = derivedKey(for: item, folderPassword: folderPassword)
+        let ciphertext = try CryptoService.encrypt(archive, using: itemKey)
+
+        try FileManager.default.createDirectory(at: vaultStore, withIntermediateDirectories: true)
+        let managedURL = vaultStore.appendingPathComponent("\(item.id.uuidString).plock")
+        try ciphertext.write(to: managedURL, options: .atomic)
+
+        // Verify the blob is recoverable BEFORE deleting the plaintext original.
+        let verify = try CryptoService.decrypt(try Data(contentsOf: managedURL), using: itemKey)
+        guard verify == archive else {
+            try? FileManager.default.removeItem(at: managedURL)
+            throw VaultError.verificationFailed
+        }
+
+        item.managedPath = managedURL.path
+        item.usesOwnPassword = (folderPassword != nil)
+        item.state = .encrypted
+        item.updatedAt = Date()
+        registry.items[index] = item
+        try persist()
+
+        // Original is now redundant; the encrypted blob is canonical.
+        if fs.exists(at: originalURL) {
+            try FileManager.default.removeItem(at: originalURL)
+        }
+    }
+
+    /// Decrypt and restore an item to its original location.
+    func unlock(_ id: UUID, folderPassword: String? = nil) throws {
+        guard let index = registry.items.firstIndex(where: { $0.id == id }) else {
+            throw VaultError.itemNotFound
+        }
+        var item = registry.items[index]
+        guard item.state == .encrypted, let managed = item.managedPath else {
+            throw VaultError.invalidState
+        }
+        if item.usesOwnPassword && folderPassword == nil {
+            throw VaultError.passwordRequired
+        }
+        let managedURL = URL(fileURLWithPath: managed)
+        guard fs.exists(at: managedURL) else { throw VaultError.managedDataMissing }
+
+        let itemKey = derivedKey(for: item, folderPassword: folderPassword)
+        // Throws CryptoError.authenticationFailed on wrong key/password.
+        let archive = try CryptoService.decrypt(try Data(contentsOf: managedURL), using: itemKey)
+
+        let originalURL = URL(fileURLWithPath: item.originalPath)
+        if fs.exists(at: originalURL) {
+            try FileManager.default.removeItem(at: originalURL)
+        }
+        try FolderArchiver.unarchive(archive, to: originalURL)
+        try FileManager.default.removeItem(at: managedURL)
+
+        item.managedPath = nil
+        item.usesOwnPassword = false
+        item.state = .visible
+        item.updatedAt = Date()
+        registry.items[index] = item
+        try persist()
+    }
+
+    /// Safety path: restore every encrypted item to its original location.
+    func unlockAll(folderPasswords: [UUID: String] = [:]) throws {
+        for item in registry.items where item.state == .encrypted {
+            try unlock(item.id, folderPassword: folderPasswords[item.id])
+        }
+    }
+
+    /// Safety path: write decrypted copies of all encrypted items into
+    /// `destination` without changing their locked state (e.g. before uninstall).
+    func exportAll(to destination: URL, folderPasswords: [UUID: String] = [:]) throws {
+        try FileManager.default.createDirectory(at: destination, withIntermediateDirectories: true)
+        for item in registry.items where item.state == .encrypted {
+            guard let managed = item.managedPath else { continue }
+            let itemKey = derivedKey(for: item, folderPassword: folderPasswords[item.id])
+            let archive = try CryptoService.decrypt(
+                try Data(contentsOf: URL(fileURLWithPath: managed)), using: itemKey)
+            let out = destination.appendingPathComponent(item.displayName)
+            if fs.exists(at: out) { try FileManager.default.removeItem(at: out) }
+            try FolderArchiver.unarchive(archive, to: out)
+        }
+    }
+
+    /// Per-item key: PBKDF2 from a per-folder password, else HKDF from the master key.
+    private func derivedKey(for item: VaultItem, folderPassword: String?) -> SymmetricKey {
+        if let password = folderPassword {
+            return KeyDerivation.deriveKey(password: password, salt: item.salt)
+        }
+        return HKDF<SHA256>.deriveKey(
+            inputKeyMaterial: key,
+            salt: item.salt,
+            info: Data("pangolock.item.v1".utf8),
+            outputByteCount: 32)
     }
 
     // MARK: - Private

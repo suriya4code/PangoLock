@@ -16,8 +16,10 @@ struct VaultItem: Codable, Identifiable, Equatable {
     var managedPath: String?
     var displayName: String
     var state: State
-    /// Per-item salt for per-folder key derivation (used from Phase 4 on).
+    /// Per-item salt for per-folder key derivation.
     var salt: Data
+    /// True if this item is encrypted with its own password (in addition to the master).
+    var usesOwnPassword: Bool
     var createdAt: Date
     var updatedAt: Date
 
@@ -33,6 +35,7 @@ struct VaultItem: Codable, Identifiable, Equatable {
         self.displayName = displayName
         self.state = state
         self.salt = salt
+        self.usesOwnPassword = false
         self.createdAt = createdAt
         self.updatedAt = createdAt
     }
