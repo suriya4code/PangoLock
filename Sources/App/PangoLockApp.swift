@@ -28,14 +28,23 @@ struct PangoLockApp: App {
         }
 
         MenuBarExtra("PangoLock", systemImage: "lock.shield") {
-            Button("Show All Hidden") { model.showAll() }
-            Button("Lock PangoLock") { model.lockApp() }
-            Button("Panic (Lock & Hide)") {
+            Button { model.showAll() } label: {
+                Label("Show All Hidden", systemImage: "eye")
+            }
+            Button { model.lockApp() } label: {
+                Label("Lock PangoLock", systemImage: "lock.fill")
+            }
+            Button {
                 model.lockApp()
                 StealthMode.setHidden(true)
+            } label: {
+                Label("Panic (Lock & Hide)", systemImage: "exclamationmark.shield.fill")
             }
             Divider()
-            Button("Quit PangoLock") { NSApplication.shared.terminate(nil) }
+            Button { NSApplication.shared.terminate(nil) } label: {
+                Label("Quit PangoLock", systemImage: "power")
+            }
         }
+        .menuBarExtraStyle(.menu)
     }
 }

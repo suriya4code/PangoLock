@@ -21,13 +21,21 @@ struct VaultListView: View {
                             .contextMenu { menu(for: item) }
                     }
                 }
+                .scrollContentBackground(.hidden)
             }
         }
+        .background(alignment: .center) { watermark }
         .dropDestination(for: URL.self) { urls, _ in
             urls.forEach { model.add($0) }
             return true
         }
         .toolbar {
+            ToolbarItem(placement: .navigation) {
+                HStack(spacing: 6) {
+                    AppLogo(size: 22)
+                    Text("PangoLock").font(.headline)
+                }
+            }
             ToolbarItemGroup {
                 Button { chooseItems() } label: { Label("Add", systemImage: "plus") }
                 Button { model.showAll() } label: { Label("Show All", systemImage: "eye") }
@@ -36,7 +44,7 @@ struct VaultListView: View {
                 Button { model.lockApp() } label: { Label("Lock", systemImage: "lock") }
             }
         }
-        .navigationTitle("PangoLock")
+        .navigationTitle("")
         .confirmationDialog("Permanently shred this item? This cannot be undone.",
                             isPresented: Binding(get: { shredCandidate != nil },
                                                  set: { if !$0 { shredCandidate = nil } }),
@@ -78,6 +86,18 @@ struct VaultListView: View {
         panel.nameFieldStringValue = "\(suggested).\(ext)"
         panel.canCreateDirectories = true
         return panel.runModal() == .OK ? panel.url : nil
+    }
+
+    /// Faint, centered brand watermark shown behind the file list.
+    private var watermark: some View {
+        Image("Watermark")
+            .resizable()
+            .interpolation(.high)
+            .scaledToFit()
+            .frame(maxWidth: 460)
+            .opacity(0.07)
+            .allowsHitTesting(false)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 
     private var emptyState: some View {

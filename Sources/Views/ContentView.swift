@@ -48,3 +48,18 @@ struct ContentView: View {
         }
     }
 }
+
+/// The app's own icon, rendered as a polished, rounded badge with a soft shadow.
+/// Reused on the onboarding, locked, and main screens for consistent branding.
+struct AppLogo: View {
+    var size: CGFloat = 96
+
+    var body: some View {
+        Image(nsImage: NSApplication.shared.applicationIconImage)
+            .resizable()
+            .interpolation(.high)
+            .frame(width: size, height: size)
+            .shadow(color: .black.opacity(0.22), radius: size * 0.07, y: size * 0.035)
+            .accessibilityLabel("PangoLock")
+    }
+}

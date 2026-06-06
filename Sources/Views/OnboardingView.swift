@@ -10,9 +10,7 @@ struct OnboardingView: View {
 
     var body: some View {
         VStack(spacing: 16) {
-            Image(systemName: "lock.shield")
-                .font(.system(size: 56))
-                .foregroundStyle(.tint)
+            AppLogo(size: 96)
             Text("Welcome to PangoLock")
                 .font(.largeTitle.bold())
             Text("Create a master password to protect your folders.")

@@ -14,11 +14,12 @@ struct LockedView: View {
 
     var body: some View {
         VStack(spacing: 16) {
-            Image(systemName: "lock.fill")
-                .font(.system(size: 56))
-                .foregroundStyle(.tint)
+            AppLogo(size: 104)
             Text("PangoLock is locked")
                 .font(.title.bold())
+            Text("Enter your master password to unlock your vault.")
+                .font(.callout)
+                .foregroundStyle(.secondary)
 
             SecureField("Master password", text: $password)
                 .textFieldStyle(.roundedBorder)
