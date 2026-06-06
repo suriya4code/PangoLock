@@ -63,3 +63,19 @@ struct AppLogo: View {
             .accessibilityLabel("PangoLock")
     }
 }
+
+/// The transparent shield emblem (no background tile) — used as the hero mark on
+/// the onboarding/lock screens, where it floats cleanly on the dark background.
+struct BrandEmblem: View {
+    var size: CGFloat = 120
+
+    var body: some View {
+        Image("Emblem")
+            .resizable()
+            .interpolation(.high)
+            .scaledToFit()
+            .frame(width: size, height: size)
+            .shadow(color: .black.opacity(0.28), radius: size * 0.08, y: size * 0.03)
+            .accessibilityLabel("PangoLock")
+    }
+}

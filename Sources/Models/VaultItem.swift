@@ -23,6 +23,9 @@ struct VaultItem: Codable, Identifiable, Equatable {
     var salt: Data
     /// True if this item is encrypted with its own password (in addition to the master).
     var usesOwnPassword: Bool
+    /// Original POSIX permissions captured when hidden, so Show can restore them
+    /// (Hide strips all access to keep other apps out). Nil unless hidden.
+    var savedMode: Int?
     var createdAt: Date
     var updatedAt: Date
 

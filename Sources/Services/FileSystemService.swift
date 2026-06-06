@@ -36,6 +36,46 @@ struct FileSystemService {
         try target.setResourceValues(values)
     }
 
+    // MARK: - Hardened hide (Finder + Spotlight + access lockdown)
+
+    /// Spotlight exclusion marker dropped inside concealed folders.
+    static let noIndexMarker = ".metadata_never_index"
+
+    /// Strongly conceal an item so other apps (video players, media scanners,
+    /// Spotlight) can't reach it while it stays in place:
+    ///   1. drop a `.metadata_never_index` marker (Spotlight skip),
+    ///   2. set the Finder hidden flag,
+    ///   3. strip ALL POSIX permissions so nothing can read/traverse it.
+    /// Returns the original permissions so `reveal` can restore them.
+    @discardableResult
+    func conceal(at url: URL) throws -> Int {
+        let isDir = (try? url.resourceValues(forKeys: [.isDirectoryKey]).isDirectory) ?? false
+        if isDir {
+            let marker = url.appendingPathComponent(Self.noIndexMarker)
+            if !fileManager.fileExists(atPath: marker.path) {
+                try? Data().write(to: marker)
+            }
+        }
+        try setHidden(true, at: url)
+        let attrs = try fileManager.attributesOfItem(atPath: url.path)
+        let original = (attrs[.posixPermissions] as? NSNumber)?.intValue ?? (isDir ? 0o755 : 0o644)
+        try fileManager.setAttributes([.posixPermissions: 0], ofItemAtPath: url.path)
+        return original
+    }
+
+    /// Reverse `conceal`: restore permissions, clear the hidden flag, and remove
+    /// the Spotlight marker. `mode` is the value returned by `conceal`.
+    func reveal(at url: URL, restoring mode: Int?) throws {
+        try fileManager.setAttributes([.posixPermissions: mode ?? 0o755],
+                                      ofItemAtPath: url.path)
+        try setHidden(false, at: url)
+        let isDir = (try? url.resourceValues(forKeys: [.isDirectoryKey]).isDirectory) ?? false
+        if isDir {
+            let marker = url.appendingPathComponent(Self.noIndexMarker)
+            try? fileManager.removeItem(at: marker)
+        }
+    }
+
     func isHidden(at url: URL) throws -> Bool {
         // Build a fresh URL and drop cached values so we read the live flag
         // (Foundation caches resource values on the URL's backing store).

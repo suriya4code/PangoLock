@@ -15,7 +15,14 @@ final class VaultManagerTests: XCTestCase {
     }
 
     override func tearDownWithError() throws {
-        try? FileManager.default.removeItem(at: dir)
+        // Hidden items have their permissions stripped (chmod 000); restore the
+        // top-level children so the temp tree can be removed.
+        let fm = FileManager.default
+        for child in (try? fm.contentsOfDirectory(atPath: dir.path)) ?? [] {
+            try? fm.setAttributes([.posixPermissions: 0o755],
+                                  ofItemAtPath: dir.appendingPathComponent(child).path)
+        }
+        try? fm.removeItem(at: dir)
     }
 
     private func makeFolder(_ name: String) throws -> URL {
@@ -59,6 +66,32 @@ final class VaultManagerTests: XCTestCase {
         try manager.show(item.id)
         XCTAssertEqual(manager.items.first?.state, .visible)
         XCTAssertFalse(try fs.isHidden(at: folder))
+    }
+
+    func testHideStripsAccessAddsSpotlightMarkerAndShowRestores() throws {
+        let manager = try makeManager()
+        let folder = try makeFolder("Movies")
+        let video = folder.appendingPathComponent("clip.mp4")
+        try Data("video-bytes".utf8).write(to: video)
+        let item = try manager.add(path: folder)
+        let fm = FileManager.default
+        func mode(_ url: URL) -> Int? {
+            (try? fm.attributesOfItem(atPath: url.path)[.posixPermissions] as? NSNumber)?.intValue
+        }
+        let marker = folder.appendingPathComponent(FileSystemService.noIndexMarker)
+
+        try manager.hide(item.id)
+        // All access removed and content unreachable (the chmod-000 folder can't
+        // even be entered to read the file or list the Spotlight marker).
+        XCTAssertEqual(mode(folder), 0, "Hide should strip all permissions")
+        XCTAssertThrowsError(try Data(contentsOf: video),
+                             "A video player must not be able to read the file while hidden")
+
+        try manager.show(item.id)
+        // Access restored, Spotlight marker removed, content readable again.
+        XCTAssertNotEqual(mode(folder), 0)
+        XCTAssertFalse(fm.fileExists(atPath: marker.path), "Spotlight marker should be cleared on show")
+        XCTAssertEqual(try Data(contentsOf: video), Data("video-bytes".utf8))
     }
 
     func testStatePersistsAcrossInstances() throws {

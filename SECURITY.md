@@ -44,6 +44,21 @@ quickly and will credit reporters who wish to be named.
   the macOS Keychain. The optional biometric unlock stores the master key behind
   a biometric-gated (Touch ID) Keychain item.
 
+## Hide vs. Lock
+
+PangoLock offers two protections with very different strength:
+
+- **Lock (Encrypt)** — the real defense. Contents are AES-256-GCM encrypted into a
+  managed blob and the plaintext is removed from its original path. No app can
+  find or read it until you unlock. Use this for anything sensitive.
+- **Hide** — hardened obfuscation for plaintext that stays in place. It sets the
+  Finder hidden flag, drops a `.metadata_never_index` Spotlight marker, **and
+  strips all POSIX permissions (chmod 000)** so other apps — video players, media
+  scanners, search — can't traverse or read it. Show restores the original
+  permissions. This is strong against ordinary apps, but it is **not encryption**:
+  a process running as you can chmod it back, and root bypasses POSIX entirely.
+  For real secrecy, use Lock.
+
 ## Fail-safe guarantees (no data loss)
 
 PangoLock is designed so that an interruption (crash, power loss, force-quit)

@@ -6,6 +6,18 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Added
+- Toolbar buttons now show hover tooltips (Add / Show All / Wallet / Lock).
+
+### Changed
+- **Hardened Hide:** hiding an item now strips all POSIX permissions (chmod 000)
+  and drops a `.metadata_never_index` Spotlight marker in addition to the Finder
+  hidden flag, so other apps (video players, media scanners, search) can't reach
+  it. Show restores the original permissions; Lock/Remove un-conceal first so a
+  folder is never stranded.
+- Onboarding and lock screens now use the transparent shield **emblem** (no cream
+  tile) so the mark floats cleanly on the dark background.
+
 ## [0.2.0] — 2026-06-06
 
 ### Added

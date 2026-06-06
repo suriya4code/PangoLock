@@ -24,7 +24,7 @@ your password is never stored and your data is encrypted at rest.
 ## Features
 
 - 🔒 **Lock & encrypt** unlimited folders with **AES‑256‑GCM**; optional per‑folder password.
-- 🙈 **Hide & show** items from Finder with one click (or drag‑and‑drop to add).
+- 🙈 **Hide & show** — one click removes an item from Finder **and** strips its access (chmod 000) + adds a Spotlight skip marker, so other apps (video players, media scanners, search) can't reach it; Show restores everything.
 - 🔑 **Zero‑knowledge master password** (PBKDF2‑210k); **Touch ID** unlock; idle auto‑lock.
 - 🧯 **Fail‑safe by design** — verify‑before‑delete, atomic writes, journaled moves: an interrupted operation never loses data.
 - 🛟 **Recovery key** for a forgotten password; **encrypted backups**; **export everything** so deleting the app never strands your data.

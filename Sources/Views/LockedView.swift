@@ -14,7 +14,7 @@ struct LockedView: View {
 
     var body: some View {
         VStack(spacing: 16) {
-            AppLogo(size: 104)
+            BrandEmblem(size: 124)
             Text("PangoLock is locked")
                 .font(.title.bold())
             Text("Enter your master password to unlock your vault.")

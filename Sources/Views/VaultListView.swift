@@ -38,10 +38,14 @@ struct VaultListView: View {
             }
             ToolbarItemGroup {
                 Button { chooseItems() } label: { Label("Add", systemImage: "plus") }
+                    .help("Add a folder or file to protect")
                 Button { model.showAll() } label: { Label("Show All", systemImage: "eye") }
+                    .help("Reveal all hidden items")
                 Button { showWallet = true } label: { Label("Wallet", systemImage: "creditcard") }
+                    .help("Open the encrypted wallet")
                 Spacer()
                 Button { model.lockApp() } label: { Label("Lock", systemImage: "lock") }
+                    .help("Lock PangoLock now")
             }
         }
         .navigationTitle("")
@@ -90,7 +94,7 @@ struct VaultListView: View {
 
     /// Faint, centered brand watermark shown behind the file list.
     private var watermark: some View {
-        Image("Watermark")
+        Image("Emblem")
             .resizable()
             .interpolation(.high)
             .scaledToFit()

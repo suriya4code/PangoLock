@@ -10,7 +10,7 @@ struct OnboardingView: View {
 
     var body: some View {
         VStack(spacing: 16) {
-            AppLogo(size: 96)
+            BrandEmblem(size: 112)
             Text("Welcome to PangoLock")
                 .font(.largeTitle.bold())
             Text("Create a master password to protect your folders.")

@@ -51,20 +51,24 @@ final class VaultManager {
 
     func hide(_ id: UUID) throws {
         try update(id) { item in
-            try SecurityScopedAccess.withAccess(bookmark: item.bookmark,
-                                                fallback: URL(fileURLWithPath: item.originalPath)) {
-                try fs.setHidden(true, at: $0)
+            let original = try SecurityScopedAccess.withAccess(
+                bookmark: item.bookmark,
+                fallback: URL(fileURLWithPath: item.originalPath)) {
+                try fs.conceal(at: $0)
             }
+            item.savedMode = original
             item.state = .hidden
         }
     }
 
     func show(_ id: UUID) throws {
         try update(id) { item in
+            let mode = item.savedMode
             try SecurityScopedAccess.withAccess(bookmark: item.bookmark,
                                                 fallback: URL(fileURLWithPath: item.originalPath)) {
-                try fs.setHidden(false, at: $0)
+                try fs.reveal(at: $0, restoring: mode)
             }
+            item.savedMode = nil
             item.state = .visible
         }
     }
@@ -75,8 +79,9 @@ final class VaultManager {
             let item = registry.items[index]
             try SecurityScopedAccess.withAccess(bookmark: item.bookmark,
                                                 fallback: URL(fileURLWithPath: item.originalPath)) {
-                try fs.setHidden(false, at: $0)
+                try fs.reveal(at: $0, restoring: item.savedMode)
             }
+            registry.items[index].savedMode = nil
             registry.items[index].state = .visible
             registry.items[index].updatedAt = Date()
         }
@@ -84,8 +89,17 @@ final class VaultManager {
     }
 
     func remove(_ id: UUID) throws {
-        guard registry.items.contains(where: { $0.id == id }) else {
+        guard let item = registry.items.first(where: { $0.id == id }) else {
             throw VaultError.itemNotFound
+        }
+        // Don't strand a concealed folder with no permissions: restore access
+        // before forgetting it.
+        if item.state == .hidden {
+            try? SecurityScopedAccess.withAccess(
+                bookmark: item.bookmark,
+                fallback: URL(fileURLWithPath: item.originalPath)) {
+                try fs.reveal(at: $0, restoring: item.savedMode)
+            }
         }
         registry.items.removeAll { $0.id == id }
         try persist()
@@ -105,6 +119,15 @@ final class VaultManager {
         }
         let originalURL = URL(fileURLWithPath: item.originalPath)
         guard fs.exists(at: originalURL) else { throw VaultError.sourceMissing }
+
+        // If the item is hidden, its access was stripped (chmod 000) — restore it
+        // so we can read it for encryption.
+        if item.state == .hidden {
+            try SecurityScopedAccess.withAccess(bookmark: item.bookmark, fallback: originalURL) {
+                try fs.reveal(at: $0, restoring: item.savedMode)
+            }
+            item.savedMode = nil
+        }
 
         let archive = try SecurityScopedAccess.withAccess(
             bookmark: item.bookmark, fallback: originalURL) {
