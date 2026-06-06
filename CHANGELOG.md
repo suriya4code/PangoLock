@@ -6,6 +6,8 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.2.1] — 2026-06-06
+
 ### Added
 - Toolbar buttons now show hover tooltips (Add / Show All / Wallet / Lock).
 
@@ -69,6 +71,7 @@ vault features — is implemented and unit‑tested (86 tests).
 - No plaintext secrets on disk or in logs; the codebase makes no logging calls.
 - The item registry itself is encrypted; a wrong key cannot even enumerate it.
 
-[Unreleased]: https://github.com/suriya4code/PangoLock/compare/v0.2.0...HEAD
+[Unreleased]: https://github.com/suriya4code/PangoLock/compare/v0.2.1...HEAD
+[0.2.1]: https://github.com/suriya4code/PangoLock/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/suriya4code/PangoLock/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/suriya4code/PangoLock/releases/tag/v0.1.0
