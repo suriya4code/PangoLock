@@ -13,6 +13,10 @@
 
 **100% free & open source. Every feature. No paywall, no premium tier, no account.**
 
+<br />
+
+<img src="assets/pangolock_demo.gif" width="720" alt="PangoLock demo — hide and encrypt a folder in one click" />
+
 </div>
 
 ---
