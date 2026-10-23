@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PangoLock · Folder Lock & Encryption for macOS</title>
+  <meta name="description" content="Hide and AES-256 lock any folder on your Mac, like a pangolin curling into an armored ball. Free and open source, zero-knowledge, every feature." />
+  <meta name="theme-color" content="#120d09" />
+  <link rel="icon" type="image/png" sizes="32x32" href="site/img/icon-32.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="site/img/icon-192.png" />
+  <link rel="apple-touch-icon" href="site/img/icon-180.png" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="PangoLock · Folder Lock & Encryption for macOS" />
+  <meta property="og:description" content="Hide and AES-256 lock any folder on your Mac. Zero-knowledge, fail-safe, 100% free and open source." />
+  <meta property="og:url" content="https://suriya4code.github.io/PangoLock/" />
+  <meta property="og:image" content="https://suriya4code.github.io/PangoLock/site/img/og-card.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://suriya4code.github.io/PangoLock/site/img/og-card.jpg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="site/style.css" />
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+
+  <header class="nav" id="top">
+    <a class="brand" href="#top" aria-label="PangoLock home">
+      <img src="site/img/icon-192.png" alt="" width="30" height="30" />
+      <span>PangoLock</span>
+    </a>
+    <nav class="nav-links" aria-label="Sections">
+      <a href="#features">Features</a>
+      <a href="#security">Security</a>
+      <a href="#architecture">Architecture</a>
+      <a href="#build">Build</a>
+    </nav>
+    <a class="btn btn-ghost btn-sm" href="https://github.com/suriya4code/PangoLock" rel="noopener">
+      <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      <span>Star <b class="star-count" data-stars>on GitHub</b></span>
+    </a>
+  </header>
+
+  <main>
+    <!-- ───────────── HERO ───────────── -->
+    <section class="hero">
+      <canvas id="scales" aria-hidden="true"></canvas>
+      <div class="hero-copy reveal">
+        <p class="eyebrow"><span class="dot"></span> Native macOS · Free forever · MIT</p>
+        <h1>Curl your files<br />into <em>armor.</em></h1>
+        <p class="lede">PangoLock hides and <strong>AES&#8209;256 encrypts</strong> any folder on your Mac behind a master password that is never stored. Like a pangolin rolling into an armored ball.</p>
+        <div class="cta">
+          <a class="btn btn-primary" href="#build">Build from source</a>
+          <button class="btn btn-ghost" id="lockToggle" type="button" aria-pressed="false">
+            <svg class="pad" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2" fill="currentColor"/><path class="shackle" d="M8 11V7a4 4 0 0 1 8 0v4" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+            <span>Lock the ball</span>
+          </button>
+        </div>
+        <ul class="badges">
+          <li>AES&#8209;256&#8209;GCM</li><li>PBKDF2 · 210k</li><li>Touch ID</li><li>App Sandbox</li><li>No logging calls</li>
+        </ul>
+      </div>
+      <a class="scroll-hint" href="#demo" aria-label="Scroll to demo"><span></span></a>
+    </section>
+
+    <!-- ───────────── DEMO ───────────── -->
+    <section class="demo" id="demo">
+      <div class="window tilt reveal" data-tilt>
+        <div class="window-bar"><i></i><i></i><i></i><span>PangoLock</span></div>
+        <video autoplay muted loop playsinline preload="metadata" poster="assets/pangolock_demo.gif" aria-label="PangoLock demo: hide and encrypt a folder in one click">
+          <source src="assets/pangolock_demo.mp4" type="video/mp4" />
+          <img src="assets/pangolock_demo.gif" alt="PangoLock demo: hide and encrypt a folder in one click" />
+        </video>
+      </div>
+      <p class="caption reveal">One click to hide. One more to encrypt. Your folder disappears from Finder and every other app.</p>
+    </section>
+
+    <!-- ───────────── HIDE vs LOCK ───────────── -->
+    <section class="modes" id="modes">
+      <div class="section-head reveal">
+        <p class="kicker">Two levels of armor</p>
+        <h2>Hide when it's private. <em>Lock</em> when it's secret.</h2>
+      </div>
+      <div class="mode-grid">
+        <article class="mode reveal">
+          <div class="state state-hidden">Hidden</div>
+          <h3>Hide</h3>
+          <p>Removes the item from Finder, strips all POSIX permissions (<code>chmod 000</code>) and drops a Spotlight skip marker, so video players, media scanners and search can't reach it. <b>Show</b> restores everything.</p>
+          <p class="note">Strong against ordinary apps. Not encryption.</p>
+        </article>
+        <article class="mode mode-lock reveal">
+          <div class="state state-enc">Encrypted</div>
+          <h3>Lock</h3>
+          <p>Archives the folder, encrypts it with AES&#8209;256&#8209;GCM into a managed <code>.plock</code> blob, <b>decrypts and verifies</b> the result, and only then removes the plaintext. Nothing can find or read it until you unlock.</p>
+          <p class="note">The real defense. Use it for anything sensitive.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ───────────── FEATURES ───────────── -->
+    <section class="features" id="features">
+      <div class="section-head reveal">
+        <p class="kicker">Every feature, no paywall</p>
+        <h2>A whole vault, in one small native app.</h2>
+      </div>
+      <div class="feature-grid">
+        <article class="card reveal" data-tilt><span class="ico">🔒</span><h3>Lock &amp; encrypt</h3><p>Unlimited folders with AES&#8209;256&#8209;GCM and an optional per&#8209;folder password.</p></article>
+        <article class="card reveal" data-tilt><span class="ico">🙈</span><h3>Hide &amp; show</h3><p>Gone from Finder, permissions stripped, skipped by Spotlight. One click brings it back.</p></article>
+        <article class="card reveal" data-tilt><span class="ico">🔑</span><h3>Zero&#8209;knowledge</h3><p>Master password never stored (PBKDF2, 210k rounds), Touch ID unlock, idle auto&#8209;lock.</p></article>
+        <article class="card reveal" data-tilt><span class="ico">🧯</span><h3>Fail&#8209;safe</h3><p>Verify&#8209;before&#8209;delete, atomic writes and journaled moves. An interrupted operation never loses data.</p></article>
+        <article class="card reveal" data-tilt><span class="ico">🛟</span><h3>Recovery &amp; backups</h3><p>Recovery key for a forgotten password, encrypted backups, and export&#8209;everything so data is never stranded.</p></article>
+        <article class="card reveal" data-tilt><span class="ico">💳</span><h3>Encrypted wallet</h3><p>Logins, cards, notes and licenses, with a strong&#8209;password generator built in.</p></article>
+        <article class="card reveal" data-tilt><span class="ico">💾</span><h3>Portable &amp; shareable</h3><p>USB lockers (<code>.pangolocker</code>) and encrypted sharing (<code>.pangoshare</code>) with a password hint.</p></article>
+        <article class="card reveal" data-tilt><span class="ico">🕵️</span><h3>Intruder &amp; stealth</h3><p>Opt&#8209;in intruder snapshot after failed unlocks, Dock&#8209;hiding stealth mode, and a panic lock&#8209;and&#8209;hide.</p></article>
+        <article class="card reveal" data-tilt><span class="ico">🧹</span><h3>Shredder &amp; cleaner</h3><p>Multi&#8209;pass secure shredder, trace cleaner, and warnings for iCloud, Dropbox, Drive and OneDrive paths.</p></article>
+      </div>
+    </section>
+
+    <!-- ───────────── SECURITY PIPELINE ───────────── -->
+    <section class="security" id="security">
+      <div class="section-head reveal">
+        <p class="kicker">Security is the product</p>
+        <h2>From password to <em>ciphertext</em>, step by step.</h2>
+      </div>
+      <ol class="pipeline reveal" id="pipeline">
+        <li><span class="step">01</span><h4>Your password</h4><p>Typed, used, wiped from memory with <code>memset_s</code>. Never written anywhere.</p></li>
+        <li><span class="step">02</span><h4>PBKDF2&#8209;HMAC&#8209;SHA256</h4><p>210,000 iterations over a random 16&#8209;byte salt derive the master key.</p></li>
+        <li><span class="step">03</span><h4>HKDF per item</h4><p>Each folder gets its own independent key, or one from its own folder password.</p></li>
+        <li><span class="step">04</span><h4>AES&#8209;256&#8209;GCM</h4><p><code>nonce ‖ ciphertext ‖ tag</code>, fresh nonce every time. Tampering fails to open.</p></li>
+        <li><span class="step">05</span><h4>Verify, then delete</h4><p>The blob is decrypted and checked before the plaintext is ever removed.</p></li>
+      </ol>
+      <div class="cipher reveal" aria-hidden="true"><span id="cipherText">~/Documents/TripsAndTours</span></div>
+      <div class="facts">
+        <div class="fact reveal"><b data-count="256">0</b><span>bit AES keys</span></div>
+        <div class="fact reveal"><b data-count="210000">0</b><span>PBKDF2 iterations</span></div>
+        <div class="fact reveal"><b data-count="86">0</b><span>unit tests on the core</span></div>
+        <div class="fact reveal"><b data-count="0">0</b><span>logging calls that could leak</span></div>
+      </div>
+      <blockquote class="honest reveal">
+        <p><b>Honest positioning:</b> PangoLock protects your data <em>at rest</em> on your Mac. It is not a defense against a fully compromised or root&#8209;owned machine. The full threat model, including what it does <em>not</em> defend against, lives in <a href="https://github.com/suriya4code/PangoLock/blob/main/SECURITY.md">SECURITY.md</a>.</p>
+      </blockquote>
+    </section>
+
+    <!-- ───────────── ARCHITECTURE ───────────── -->
+    <section class="architecture" id="architecture">
+      <div class="section-head reveal">
+        <p class="kicker">Apple&#8209;native, end to end</p>
+        <h2>SwiftUI on top. CryptoKit underneath.</h2>
+        <p class="sub">MVVM with CryptoKit, LocalAuthentication, the Keychain, AVFoundation and AppKit. No third&#8209;party dependencies.</p>
+      </div>
+      <div class="layers reveal">
+        <div class="layer"><b>App</b><span>PangoLockApp · Settings · MenuBarExtra</span></div>
+        <div class="layer"><b>Views</b><span>Onboarding · Locked · VaultList · Wallet · IntruderLog</span></div>
+        <div class="layer"><b>ViewModel</b><span>AppModel orchestrates auth, vault, wallet, recovery</span></div>
+        <div class="layer"><b>Services</b><span>Crypto · KeyDerivation · Keychain · VaultManager · Shredder · 20+</span></div>
+        <div class="layer"><b>Encrypted stores</b><span>registry.enc · wallet.enc · recovery.bundle · *.plock</span></div>
+      </div>
+      <figure class="arch-figure reveal">
+        <a href="assets/architecture.png"><img src="assets/architecture.png" alt="PangoLock architecture diagram" loading="lazy" /></a>
+        <figcaption>Full write&#8209;up in <a href="https://github.com/suriya4code/PangoLock/blob/main/docs/ARCHITECTURE.md">docs/ARCHITECTURE.md</a>.</figcaption>
+      </figure>
+    </section>
+
+    <!-- ───────────── BUILD ───────────── -->
+    <section class="build" id="build">
+      <div class="section-head reveal">
+        <p class="kicker">Requirements: macOS 13+ · Xcode 16+ · Swift 5.9+</p>
+        <h2>Build it yourself in a minute.</h2>
+        <p class="sub">Universal binary for Apple Silicon and Intel.</p>
+      </div>
+      <div class="term reveal">
+        <div class="term-bar"><i></i><i></i><i></i><span>zsh</span><button class="copy" type="button" data-copy="build-cmd">Copy</button></div>
+<pre id="build-cmd"><code><span class="c">git clone</span> https://github.com/suriya4code/PangoLock.git
+<span class="c">cd</span> PangoLock
+<span class="c">xcodebuild build</span> -project PangoLock.xcodeproj -scheme PangoLock \
+  -configuration Debug -destination 'platform=macOS' \
+  CODE_SIGNING_ALLOWED=NO -derivedDataPath build
+<span class="c">open</span> build/Build/Products/Debug/PangoLock.app</code></pre>
+      </div>
+      <div class="term term-sm reveal">
+        <div class="term-bar"><i></i><i></i><i></i><span>run the tests</span><button class="copy" type="button" data-copy="test-cmd">Copy</button></div>
+<pre id="test-cmd"><code><span class="c">xcodebuild test</span> -project PangoLock.xcodeproj -scheme PangoLock \
+  -destination 'platform=macOS' CODE_SIGNING_ALLOWED=NO -derivedDataPath build</code></pre>
+      </div>
+      <p class="sub reveal">Signing, notarization and release DMGs: <a href="https://github.com/suriya4code/PangoLock/blob/main/docs/RELEASING.md">docs/RELEASING.md</a>.</p>
+    </section>
+
+    <!-- ───────────── SUPPORT ───────────── -->
+    <section class="support">
+      <img class="support-emblem reveal" src="site/img/emblem.webp" alt="PangoLock pangolin shield emblem" width="240" height="279" loading="lazy" />
+      <h2 class="reveal">Free forever. <em>Really.</em></h2>
+      <p class="sub reveal">No premium tier, no account, no paywall. If PangoLock protects something you care about, a star or a sponsorship keeps it going.</p>
+      <div class="cta reveal">
+        <a class="btn btn-primary" href="https://github.com/suriya4code/PangoLock">⭐ Star the repo</a>
+        <a class="btn btn-ghost" href="https://github.com/sponsors/suriya4code">♥ Sponsor</a>
+        <a class="btn btn-ghost" href="https://github.com/suriya4code/PangoLock/blob/main/CONTRIBUTING.md">Contribute</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <p>MIT © PangoLock contributors · <a href="https://github.com/suriya4code/PangoLock/blob/main/CHANGELOG.md">Changelog</a> · <a href="https://github.com/suriya4code/PangoLock/blob/main/SECURITY.md">Report a vulnerability</a> · Made by <a href="https://github.com/suriya4code">@suriya4code</a></p>
+  </footer>
+
+  <script src="site/main.js" defer></script>
+</body>
+</html>
