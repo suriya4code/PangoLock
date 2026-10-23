@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="300" viewBox="0 0 960 300" role="img" aria-label="PangoLock encryption pipeline: password, PBKDF2, HKDF, AES-256-GCM, verify then delete">
+  <title>PangoLock encryption pipeline</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1c150f"/>
+      <stop offset="1" stop-color="#120d09"/>
+    </linearGradient>
+    <linearGradient id="wire" gradientUnits="userSpaceOnUse" x1="128" y1="0" x2="832" y2="0">
+      <stop offset="0" stop-color="#c8945a"/>
+      <stop offset=".7" stop-color="#e7c38a"/>
+      <stop offset="1" stop-color="#5cc58a"/>
+    </linearGradient>
+    <radialGradient id="glow">
+      <stop offset="0" stop-color="#fff3d6"/>
+      <stop offset=".35" stop-color="#e7c38a"/>
+      <stop offset="1" stop-color="#e7c38a" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <style>
+    text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Helvetica, Arial, sans-serif; }
+    .mono { font-family: "SF Mono", ui-monospace, Menlo, Consolas, monospace; }
+    .kick { fill: #c8945a; font-size: 12px; letter-spacing: 2.4px; font-weight: 600; }
+    .t { fill: #f6ecd6; font-size: 15px; font-weight: 600; }
+    .d { fill: #ad9a80; font-size: 12.5px; }
+    .num { fill: #e7c38a; font-size: 14px; font-weight: 600; }
+    .ring { fill: #19120c; stroke: rgba(231,195,138,.35); stroke-width: 1.5; }
+    .lit { fill: none; stroke: #e7c38a; stroke-width: 2; opacity: 0; animation: lit 6s infinite; }
+    .n2 .lit { animation-delay: .37s; } .n3 .lit { animation-delay: 1.05s; } .n4 .lit { animation-delay: 1.72s; }
+    .n5 .lit { animation-delay: 2.4s; stroke: #5cc58a; }
+    @keyframes lit { 0%, 4% { opacity: 0; } 8%, 60% { opacity: 1; } 75%, 100% { opacity: 0; } }
+    .flow { stroke-dasharray: 800; stroke-dashoffset: 800; animation: flow 6s linear infinite; }
+    @keyframes flow { 0% { stroke-dashoffset: 800; } 45%, 62% { stroke-dashoffset: 0; } 78%, 100% { stroke-dashoffset: -800; } }
+    .packet { animation: packet 6s linear infinite; }
+    @keyframes packet { 0% { transform: translateX(0); opacity: 0; } 4% { opacity: 1; } 45% { transform: translateX(704px); opacity: 1; } 55%, 100% { transform: translateX(704px); opacity: 0; } }
+    .plain { animation: plain 6s infinite; }
+    .cipher { animation: cipher 6s infinite; opacity: 0; }
+    @keyframes plain { 0%, 40% { opacity: 1; } 48%, 92% { opacity: 0; } 100% { opacity: 1; } }
+    @keyframes cipher { 0%, 42% { opacity: 0; } 50%, 90% { opacity: 1; } 98%, 100% { opacity: 0; } }
+    @media (prefers-reduced-motion: reduce) { * { animation: none !important; } .lit { opacity: 1; } .flow { stroke-dashoffset: 0; } }
+  </style>
+
+  <rect x="1" y="1" width="958" height="298" rx="18" fill="url(#bg)" stroke="rgba(231,195,138,.18)"/>
+  <text x="40" y="44" class="kick">FROM PASSWORD TO CIPHERTEXT</text>
+
+  <line x1="128" y1="112" x2="832" y2="112" stroke="rgba(231,195,138,.15)" stroke-width="2"/>
+  <line class="flow" x1="128" y1="112" x2="832" y2="112" stroke="url(#wire)" stroke-width="2.5"/>
+  <circle class="packet" cx="128" cy="112" r="12" fill="url(#glow)"/>
+
+  <g class="n1"><circle class="ring" cx="128" cy="112" r="28"/><circle class="lit" cx="128" cy="112" r="28"/><text x="128" y="117" class="num mono" text-anchor="middle">01</text>
+    <text x="128" y="168" class="t" text-anchor="middle">Your password</text><text x="128" y="188" class="d" text-anchor="middle">never stored,</text><text x="128" y="204" class="d" text-anchor="middle">wiped with memset_s</text></g>
+  <g class="n2"><circle class="ring" cx="304" cy="112" r="28"/><circle class="lit" cx="304" cy="112" r="28"/><text x="304" y="117" class="num mono" text-anchor="middle">02</text>
+    <text x="304" y="168" class="t" text-anchor="middle">PBKDF2-SHA256</text><text x="304" y="188" class="d" text-anchor="middle">210,000 iterations,</text><text x="304" y="204" class="d" text-anchor="middle">random 16-byte salt</text></g>
+  <g class="n3"><circle class="ring" cx="480" cy="112" r="28"/><circle class="lit" cx="480" cy="112" r="28"/><text x="480" y="117" class="num mono" text-anchor="middle">03</text>
+    <text x="480" y="168" class="t" text-anchor="middle">HKDF per item</text><text x="480" y="188" class="d" text-anchor="middle">every folder gets</text><text x="480" y="204" class="d" text-anchor="middle">its own key</text></g>
+  <g class="n4"><circle class="ring" cx="656" cy="112" r="28"/><circle class="lit" cx="656" cy="112" r="28"/><text x="656" y="117" class="num mono" text-anchor="middle">04</text>
+    <text x="656" y="168" class="t" text-anchor="middle">AES-256-GCM</text><text x="656" y="188" class="d" text-anchor="middle">nonce ‖ ciphertext ‖ tag,</text><text x="656" y="204" class="d" text-anchor="middle">tamper-evident</text></g>
+  <g class="n5"><circle class="ring" cx="832" cy="112" r="28"/><circle class="lit" cx="832" cy="112" r="28"/><text x="832" y="117" class="num mono" text-anchor="middle" fill="#5cc58a" style="fill:#5cc58a">05</text>
+    <text x="832" y="168" class="t" text-anchor="middle">Verify, then delete</text><text x="832" y="188" class="d" text-anchor="middle">plaintext removed only</text><text x="832" y="204" class="d" text-anchor="middle">after a clean decrypt</text></g>
+
+  <rect x="40" y="232" width="880" height="44" rx="10" fill="rgba(0,0,0,.28)" stroke="rgba(231,195,138,.3)" stroke-dasharray="4 5"/>
+  <text x="480" y="260" class="mono plain" text-anchor="middle" fill="#e7c38a" font-size="15">~/Documents/TripsAndTours</text>
+  <text x="480" y="260" class="mono cipher" text-anchor="middle" fill="#5cc58a" font-size="15">9f3a0c7e·b41d6e2a95f07c38d1e4a6b2.plock  ✓ encrypted at rest</text>
+</svg>
